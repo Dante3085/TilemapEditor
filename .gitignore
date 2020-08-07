@@ -1,0 +1,12 @@
+
+# Visual Studio 2019 project files
+.vs/
+Properties/
+*csproj*
+TilemapEditor.sln
+app.manifest
+obj/
+
+# other
+Content/
+Icon.ico
