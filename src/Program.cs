@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Text.Json;
+using System.Collections.Generic;
 
 using TilemapEditor.src;
 
@@ -33,10 +34,21 @@ namespace TilemapEditor
             //File.WriteAllText("Test.json", jsonString);
 
             // JSON deserialization example with user defined type "TsData"
-            string jsonString = File.ReadAllText("configFiles/tilesets/jsonTilesetTest.ts.json");
-            TsData t = JsonSerializer.Deserialize<TsData>(jsonString);
+            //string jsonString = File.ReadAllText("configFiles/tilesets/jsonTilesetTest.ts.json");
+            //TsData t = JsonSerializer.Deserialize<TsData>(jsonString);
 
             // JSON serialization example with user defined type "TsData"
+            TsData t2 = new TsData();
+            t2.AutoTiles = true;
+            t2.Region = new List<int>() { 10, 22, 300, 400 };
+            t2.TilesetPath = "tilesets/someTileset";
+            t2.TileSize = new List<int>() { 16, 16 };
+
+            JsonSerializerOptions options = new JsonSerializerOptions();
+            options.WriteIndented = true;
+            string jsonString2 = JsonSerializer.Serialize(t2, options);
+            File.WriteAllText("configFiles/tilesets/jsonTilesetTest2.ts.json", jsonString2);
+
         }
     }
 #endif
