@@ -6,6 +6,9 @@ Properties/
 TilemapEditor.sln
 app.manifest
 obj/
+app.config
+packages.config
+packages/
 
 # other
 Content/
