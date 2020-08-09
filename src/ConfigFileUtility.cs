@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
+using System.Text.Json;
+using System.IO;
 
 namespace TilemapEditor
 {
@@ -42,7 +44,7 @@ namespace TilemapEditor
     }
 
     // TODO: Use Animation instead of AnimationData to avoid this extra class.
-    public class AnimationDatasPlusSpriteSheet
+    public class AnimationDataPlusSpriteSheet
     {
         public List<AnimationData> animationDatas = new List<AnimationData>();
         public String spriteSheet = String.Empty;
@@ -72,7 +74,7 @@ namespace TilemapEditor
         /// </summary>
         /// <param name="path"></param>
         /// <returns></returns>
-        public static AnimationDatasPlusSpriteSheet ReadAnimationFile(String path)
+        public static AnimationDataPlusSpriteSheet ReadAnimationFile(String path)
         {
             if (!path.EndsWith(".anm.txt"))
             {
@@ -84,7 +86,7 @@ namespace TilemapEditor
 
             System.IO.StreamReader file = new System.IO.StreamReader(path);
 
-            AnimationDatasPlusSpriteSheet animDataPlusSpriteSheet = new AnimationDatasPlusSpriteSheet();
+            AnimationDataPlusSpriteSheet animDataPlusSpriteSheet = new AnimationDataPlusSpriteSheet();
 
             // Prepare Variables for all the things that will be read.
             String spriteSheetName = String.Empty;
