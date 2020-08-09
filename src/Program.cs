@@ -19,8 +19,8 @@ namespace TilemapEditor
         [STAThread]
         static void Main()
         {
-            //using (var game = new Game1())
-            //    game.Run();
+            using (var game = new Game1())
+                game.Run();
 
             // JSON example
             //SomeData data = new SomeData();
@@ -38,17 +38,16 @@ namespace TilemapEditor
             //TsData t = JsonSerializer.Deserialize<TsData>(jsonString);
 
             // JSON serialization example with user defined type "TsData"
-            TsData t2 = new TsData();
-            t2.AutoTiles = true;
-            t2.Region = new List<int>() { 10, 22, 300, 400 };
-            t2.TilesetPath = "tilesets/someTileset";
-            t2.TileSize = new List<int>() { 16, 16 };
+            //TsData t2 = new TsData();
+            //t2.AutoTiles = true;
+            //t2.Region = new List<int>() { 10, 22, 300, 400 };
+            //t2.TilesetPath = "tilesets/someTileset";
+            //t2.TileSize = new List<int>() { 16, 16 };
 
-            JsonSerializerOptions options = new JsonSerializerOptions();
-            options.WriteIndented = true;
-            string jsonString2 = JsonSerializer.Serialize(t2, options);
-            File.WriteAllText("configFiles/tilesets/jsonTilesetTest2.ts.json", jsonString2);
-
+            //JsonSerializerOptions options = new JsonSerializerOptions();
+            //options.WriteIndented = true;
+            //string jsonString2 = JsonSerializer.Serialize(t2, options);
+            //File.WriteAllText("configFiles/tilesets/jsonTilesetTest2.ts.json", jsonString2);
         }
     }
 #endif
