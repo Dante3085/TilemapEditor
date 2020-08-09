@@ -13,6 +13,13 @@ namespace TilemapEditor
         public Rectangle textureBounds;
         public Rectangle screenBounds;
 
+        public Tile()
+        {
+            name = "NOT_INITIALIZED";
+            textureBounds = Rectangle.Empty;
+            screenBounds = Rectangle.Empty;
+        }
+
         public Tile(String name, Rectangle textureBounds, Rectangle screenBounds)
         {
             this.name = name;
