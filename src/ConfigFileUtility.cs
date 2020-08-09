@@ -46,7 +46,7 @@ namespace TilemapEditor
     // TODO: Use Animation instead of AnimationData to avoid this extra class.
     public class AnimationDataPlusSpriteSheet
     {
-        public List<AnimationData> animationDatas = new List<AnimationData>();
+        public List<AnimationData> animationData = new List<AnimationData>();
         public String spriteSheet = String.Empty;
     }
 
@@ -171,7 +171,7 @@ namespace TilemapEditor
                         line = line.Remove(0, 10);
                         isLooped = bool.Parse(line);
 
-                        animDataPlusSpriteSheet.animationDatas.Add
+                        animDataPlusSpriteSheet.animationData.Add
                         (
                             new AnimationData
                             (
