@@ -282,7 +282,7 @@ namespace TilemapEditor
             fontSize = font.MeasureString(infoText);
 
             drawingArea = new DrawingArea(viewport.Bounds, tileSelection);
-            tileSelection.ReadTilesFromFile("configFiles/tilesets/chronoTriggerCastleTiles2.ts.txt",
+            tileSelection.ReadTilesFromFile("configFiles/tilesets/testNormalTilesFile.ts.json",
                                              content);
 
             tileSelection.LoadContent(content);

@@ -20,6 +20,18 @@
 /processorParam:TextureFormat=Compressed
 /build:fonts/font_default.spritefont
 
+#begin tilesets/overworld_tileset_grass.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:tilesets/overworld_tileset_grass.png
+
 #begin tilesets/snes_chrono_trigger_castle_transparent_background.png
 /importer:TextureImporter
 /processor:TextureProcessor
