@@ -2,18 +2,6 @@
     "TILESET": "tilesets/overworld_tileset_grass",
     "TILES":
     {
-        "Grass_0": { "x": 0, "y": 0, "width": 16, "height": 16 },
-        "Badonkadonk": { "x": 16, "y": 0, "width": 16, "height": 16 },
-        "das": { "x": 16, "y": 0, "width": 16, "height": 16 },
-        "d": { "x": 16, "y": 0, "width": 32, "height": 16 },
-        "ssss": { "x": 16, "y": 0, "width": 16, "height": 32 },
-        "gf": { "x": 16, "y": 0, "width": 16, "height": 16 },
-        "dg": { "x": 16, "y": 0, "width": 16, "height": 16 },
-        "ddddd": { "x": 16, "y": 0, "width": 32, "height": 16 },
-        "gfgfg": { "x": 16, "y": 0, "width": 16, "height": 32 },
-        "dasdsad": { "x": 16, "y": 0, "width": 16, "height": 16 },
-        "vcv": { "x": 16, "y": 0, "width": 16, "height": 16 },
-        "gfh": { "x": 16, "y": 0, "width": 32, "height": 16 },
-        "14343": { "x": 16, "y": 0, "width": 16, "height": 32 }
+        "Grass_0": [0, 0, 16, 16]
     }
 }

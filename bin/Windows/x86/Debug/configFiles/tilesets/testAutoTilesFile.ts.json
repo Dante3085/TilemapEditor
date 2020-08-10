@@ -2,7 +2,7 @@
     "TILESET": "tilesets/snes_chrono_trigger_castle_transparent_background",
     "AUTO_TILES":
     {
-        "TILE_SIZE": {"x": 16, "y": 16},
-        "REGION": {"x": 16, "y": 16, "width": 1088, "height": 1568}
+        "TILE_SIZE": [16, 16],
+        "REGION": [16, 16, 1088, 1568]
     }
 }

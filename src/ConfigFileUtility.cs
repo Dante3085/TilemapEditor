@@ -468,11 +468,11 @@ namespace TilemapEditor
                     newTile.name = p.Name;
                     newTile.screenBounds = Rectangle.Empty;
 
-                    var textureBoundsValues = p.Value.EnumerateObject().ToList();
-                    newTile.textureBounds.X = textureBoundsValues[0].Value.GetInt32();
-                    newTile.textureBounds.Y = textureBoundsValues[1].Value.GetInt32();
-                    newTile.textureBounds.Width = textureBoundsValues[2].Value.GetInt32();
-                    newTile.textureBounds.Height = textureBoundsValues[3].Value.GetInt32();
+                    var textureBoundsValues = p.Value.EnumerateArray().ToList();
+                    newTile.textureBounds.X = textureBoundsValues[0].GetInt32();
+                    newTile.textureBounds.Y = textureBoundsValues[1].GetInt32();
+                    newTile.textureBounds.Width = textureBoundsValues[2].GetInt32();
+                    newTile.textureBounds.Height = textureBoundsValues[3].GetInt32();
 
                     if (tiles[tiles.Count - 1].Count == numTilesPerRow)
                     {
@@ -488,17 +488,17 @@ namespace TilemapEditor
             {
                 var tileSizeAndRegionAttributes = tilesOrAutoTilesElement.EnumerateObject().ToList();
 
-                var tileSizeAttributes = tileSizeAndRegionAttributes[0].Value.EnumerateObject().ToList();
+                var tileSizeValues = tileSizeAndRegionAttributes[0].Value.EnumerateArray().ToList();
                 Vector2 tileSize;
-                tileSize.X = tileSizeAttributes[0].Value.GetInt32();
-                tileSize.Y = tileSizeAttributes[1].Value.GetInt32();
+                tileSize.X = tileSizeValues[0].GetInt32();
+                tileSize.Y = tileSizeValues[1].GetInt32();
 
-                var regionAttributes = tileSizeAndRegionAttributes[1].Value.EnumerateObject().ToList();
+                var regionAttributes = tileSizeAndRegionAttributes[1].Value.EnumerateArray().ToList();
                 Rectangle region;
-                region.X = regionAttributes[0].Value.GetInt32();
-                region.Y = regionAttributes[1].Value.GetInt32();
-                region.Width = regionAttributes[2].Value.GetInt32();
-                region.Height = regionAttributes[3].Value.GetInt32();
+                region.X = regionAttributes[0].GetInt32();
+                region.Y = regionAttributes[1].GetInt32();
+                region.Width = regionAttributes[2].GetInt32();
+                region.Height = regionAttributes[3].GetInt32();
 
                 int row = 0;
                 int column = 0;
