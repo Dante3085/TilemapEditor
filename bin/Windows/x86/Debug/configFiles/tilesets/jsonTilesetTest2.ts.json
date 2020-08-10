@@ -1,0 +1,14 @@
+{
+  "TilesetPath": "tilesets/someTileset",
+  "AutoTiles": true,
+  "TileSize": [
+    16,
+    16
+  ],
+  "Region": [
+    10,
+    22,
+    300,
+    400
+  ]
+}
