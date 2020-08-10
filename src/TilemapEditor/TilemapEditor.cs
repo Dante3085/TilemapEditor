@@ -7,6 +7,9 @@ using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Windows.Forms;
+using System.Text.Json;
+using System.IO;
+using System.Linq;
 
 namespace TilemapEditor
 {
@@ -291,67 +294,56 @@ namespace TilemapEditor
 
         private void ReadTilemapFile(String path)
         {
-            if (!path.EndsWith(".tm.txt"))
+            // Only allow new json format: example.tm.json
+            if (!path.EndsWith(".tm.json"))
             {
-                throw new ArgumentException("Given file '" + path + "' is not an tm(Tilemap)File.\n" +
-                    "Provide a file that ends with '.tm.txt'.");
+                throw new ArgumentException("Given file '" + path + "' is not a tm(Tilemap)File.\n" +
+                    "Provide a file that ends with '.tm.json'.");
             }
 
-            System.IO.StreamReader reader = new System.IO.StreamReader(path);
-            String line = String.Empty;
+            // Variables for navigating Json file-structure.
+            String jsonString = File.ReadAllText(path);
+            JsonDocument jsonDoc = JsonDocument.Parse(jsonString);
+            JsonElement tilesElement;
 
-            // Variables for things that will be read.
-            String tileSetName = String.Empty;
-            String tileName = String.Empty;
-            Rectangle textureBounds = Rectangle.Empty;
-            Rectangle screenBounds = Rectangle.Empty;
+            // Variables for storing the information that will be read from the file.
             List<Tile> tiles = new List<Tile>();
-            List<Rectangle> collisionBoxes = new List<Rectangle>();
 
-            while ((line = reader.ReadLine()) != null)
+            // TODO: Handle TILESET attribute so that correct Tileset for Tilemap
+            //       is automatically loaded.
+
+            // Read Tiles from TILES attribute.
+            if (jsonDoc.RootElement.TryGetProperty("TILES", out tilesElement))
             {
-                // Find section
-                if (line.StartsWith("[") && line.EndsWith("]"))
+                foreach (JsonProperty p in tilesElement.EnumerateObject())
                 {
-                    // Determine specific section
-                    if (line.Contains("TILE"))
-                    {
-                        line = Utility.ReplaceWhitespace(reader.ReadLine(), ""); // Remove Whitespace
-                        tileName = line.Remove(0, 5); // Remove 'NAME='
+                    Tile newTile = new Tile();
+                    newTile.name = p.Name;
 
-                        line = Utility.ReplaceWhitespace(reader.ReadLine(), "");
-                        line = line.Remove(0, 15); // Remove 'TEXTURE_BOUNDS='
-                        textureBounds = Utility.StringToRectangle(line);
+                    var tileAttributes = p.Value.EnumerateObject().ToList();
 
-                        line = Utility.ReplaceWhitespace(reader.ReadLine(), "");
-                        line = line.Remove(0, 14); // Remove 'SCREEN_BOUDNDS='
-                        screenBounds = Utility.StringToRectangle(line);
+                    var textureBoundsValues = tileAttributes[0].Value.EnumerateArray().ToList();
+                    newTile.textureBounds.X = textureBoundsValues[0].GetInt32();
+                    newTile.textureBounds.Y = textureBoundsValues[1].GetInt32();
+                    newTile.textureBounds.Width = textureBoundsValues[2].GetInt32();
+                    newTile.textureBounds.Height = textureBoundsValues[3].GetInt32();
 
-                        tiles.Add(new Tile(tileName, textureBounds, screenBounds));
-                    }
-                    else if (line.Contains("COLLISION_BOX"))
-                    {
-                        line = Utility.ReplaceWhitespace(reader.ReadLine(), ""); // Remove Whitespace
-                        line = line.Remove(0, 17); // Remove 'COLLISION_BOUNDS='
-                        collisionBoxes.Add(Utility.StringToRectangle(line));
-                    }
+                    var screenBoundsValues = tileAttributes[1].Value.EnumerateArray().ToList();
+                    newTile.screenBounds.X = screenBoundsValues[0].GetInt32();
+                    newTile.screenBounds.Y = screenBoundsValues[1].GetInt32();
+                    newTile.screenBounds.Width = screenBoundsValues[2].GetInt32();
+                    newTile.screenBounds.Height = screenBoundsValues[3].GetInt32();
+
+                    tiles.Add(newTile);
                 }
-                else if (line.Contains("TILESET"))
-                {
-                    line = Utility.ReplaceWhitespace(line, "");
-                    tileSetName = line.Substring(8); // Read everything after 'TILESET='
-                }
+            }
+            else
+            {
+                throw new FormatException("Given file '" + path + "' is missing a TILES attribute and is therefore " +
+                    "not a valid tm(Tilemap)File.");
             }
 
             drawingArea.Tiles = tiles;
-            drawingArea.CollisionBoxes = collisionBoxes;
-
-            // Figure out how to deal with new/old tileset.
-            // Load Tileset if it has never been loaded and
-            // just set it if it has been loaded before.
-            // tileSelection.TileSet = tilese
-
-            reader.Close();
         }
     }
 }
