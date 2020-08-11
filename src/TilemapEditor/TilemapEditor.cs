@@ -318,17 +318,18 @@ namespace TilemapEditor
                 foreach (JsonProperty p in tilesElement.EnumerateObject())
                 {
                     Tile newTile = new Tile();
-                    newTile.name = p.Name;
 
                     var tileAttributes = p.Value.EnumerateObject().ToList();
 
-                    var textureBoundsValues = tileAttributes[0].Value.EnumerateArray().ToList();
+                    newTile.name = tileAttributes[0].Value.GetString();
+
+                    var textureBoundsValues = tileAttributes[1].Value.EnumerateArray().ToList();
                     newTile.textureBounds.X = textureBoundsValues[0].GetInt32();
                     newTile.textureBounds.Y = textureBoundsValues[1].GetInt32();
                     newTile.textureBounds.Width = textureBoundsValues[2].GetInt32();
                     newTile.textureBounds.Height = textureBoundsValues[3].GetInt32();
 
-                    var screenBoundsValues = tileAttributes[1].Value.EnumerateArray().ToList();
+                    var screenBoundsValues = tileAttributes[2].Value.EnumerateArray().ToList();
                     newTile.screenBounds.X = screenBoundsValues[0].GetInt32();
                     newTile.screenBounds.Y = screenBoundsValues[1].GetInt32();
                     newTile.screenBounds.Width = screenBoundsValues[2].GetInt32();

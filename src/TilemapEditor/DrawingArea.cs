@@ -1005,42 +1005,92 @@ namespace TilemapEditor
 
         public void SaveToFile(String path)
         {
-            String jsonString = JsonSerializer.Serialize(tiles);
+            FileStream fileStream = new FileStream(path, FileMode.Create);
 
+            JsonWriterOptions writerOptions = new JsonWriterOptions();
+            writerOptions.Indented = true;
+            Utf8JsonWriter writer = new Utf8JsonWriter(fileStream, writerOptions);
+
+            writer.WriteStartObject();
+
+            writer.WritePropertyName("TILESET");
+            writer.WriteStringValue("tilesets/HOW_TO_GET_TILESET_NAME_?");
+
+            writer.WritePropertyName("TILES");
+            writer.WriteStartObject();
+
+            for (int i = 0; i < tiles.Count; ++i)
+            {
+                Tile tile = tiles[i];
+
+                writer.WritePropertyName("TILE_" + (i + 1));
+                writer.WriteStartObject();
+
+                // Name
+                writer.WritePropertyName("NAME");
+                writer.WriteStringValue(tile.name);
+
+                // TextureBounds
+                writer.WritePropertyName("TEXTURE_BOUNDS");
+                writer.WriteStartArray();
+                writer.WriteNumberValue(tile.textureBounds.X);
+                writer.WriteNumberValue(tile.textureBounds.Y);
+                writer.WriteNumberValue(tile.textureBounds.Width);
+                writer.WriteNumberValue(tile.textureBounds.Height);
+                writer.WriteEndArray();
+
+                // ScreenBounds
+                writer.WritePropertyName("SCREEN_BOUNDS");
+                writer.WriteStartArray();
+                writer.WriteNumberValue(tile.screenBounds.X);
+                writer.WriteNumberValue(tile.screenBounds.Y);
+                writer.WriteNumberValue(tile.screenBounds.Width);
+                writer.WriteNumberValue(tile.screenBounds.Height);
+                writer.WriteEndArray();
+
+                writer.WriteEndObject();
+            }
+
+            writer.WriteEndObject();
+            writer.WriteEndObject();
+
+            writer.Flush();
+
+            
             //if (System.IO.File.Exists(path))
             //{
             //    throw new ArgumentException("The file '" + path + "' already exists.\n" +
             //        "Delete it manually if you want to overwrite it!");
             //}
 
-            System.IO.StreamWriter writer = new System.IO.StreamWriter(path);
+            //System.IO.StreamWriter writer = new System.IO.StreamWriter(path);
 
-            // Write tileSet to file
-            writer.WriteLine("TILESET = " + tileSelection.TileSet);
+            //// Write tileSet to file
+            //writer.WriteLine("TILESET = " + tileSelection.TileSet);
 
-            // Write each Tile to file
-            foreach (Tile tile in tiles)
-            {
-                // Separate every Tile by an empty line
-                writer.WriteLine("");
+            //// Write each Tile to file
+            //foreach (Tile tile in tiles)
+            //{
+            //    // Separate every Tile by an empty line
+            //    writer.WriteLine("");
 
-                // Write Tile information to file
-                writer.WriteLine("[TILE]");
-                writer.WriteLine("NAME           = " + tile.name);
-                writer.WriteLine("TEXTURE_BOUNDS = " + Utility.RectangleToString(tile.textureBounds));
-                writer.WriteLine("SCREEN_BOUNDS  = " + Utility.RectangleToString(tile.screenBounds));
-            }
-            foreach (Rectangle box in collisionBoxes)
-            {
-                // Separate every Tile by an empty line
-                writer.WriteLine("");
+            //    // Write Tile information to file
+            //    writer.WriteLine("[TILE]");
+            //    writer.WriteLine("NAME           = " + tile.name);
+            //    writer.WriteLine("TEXTURE_BOUNDS = " + Utility.RectangleToString(tile.textureBounds));
+            //    writer.WriteLine("SCREEN_BOUNDS  = " + Utility.RectangleToString(tile.screenBounds));
+            //}
+            //foreach (Rectangle box in collisionBoxes)
+            //{
+            //    // Separate every Tile by an empty line
+            //    writer.WriteLine("");
 
-                // Write Tile information to file
-                writer.WriteLine("[COLLISION_BOX]");
-                writer.WriteLine("COLLISION_BOUNDS  = " + Utility.RectangleToString(box));
-            }
+            //    // Write Tile information to file
+            //    writer.WriteLine("[COLLISION_BOX]");
+            //    writer.WriteLine("COLLISION_BOUNDS  = " + Utility.RectangleToString(box));
+            //}
 
-            writer.Close();
+            //writer.Close();
         }
     }
 }
