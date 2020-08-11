@@ -1005,6 +1005,12 @@ namespace TilemapEditor
 
         public void SaveToFile(String path)
         {
+            if (!path.EndsWith(".tm.json"))
+            {
+                throw new FormatException("Given file '" + path + "' is not a tm(Tilemap)File.\n" +
+                    "Provide a file that ends with '.tm.json'.");
+            }
+
             FileStream fileStream = new FileStream(path, FileMode.Create);
 
             JsonWriterOptions writerOptions = new JsonWriterOptions();
@@ -1054,7 +1060,8 @@ namespace TilemapEditor
             writer.WriteEndObject();
             writer.WriteEndObject();
 
-            writer.Flush();
+            writer.Dispose();
+            fileStream.Dispose();
         }
     }
 }
