@@ -8,6 +8,8 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
 using C3.MonoGame;
 using Microsoft.Xna.Framework.Input;
+using System.Text.Json;
+using System.IO;
 
 namespace TilemapEditor
 {
@@ -1003,6 +1005,8 @@ namespace TilemapEditor
 
         public void SaveToFile(String path)
         {
+            String jsonString = JsonSerializer.Serialize(tiles);
+
             //if (System.IO.File.Exists(path))
             //{
             //    throw new ArgumentException("The file '" + path + "' already exists.\n" +

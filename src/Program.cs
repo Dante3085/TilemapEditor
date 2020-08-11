@@ -4,6 +4,7 @@ using System.Text.Json;
 using System.Collections.Generic;
 
 using TilemapEditor.src;
+using Microsoft.Xna.Framework;
 
 namespace TilemapEditor
 {
@@ -13,35 +14,21 @@ namespace TilemapEditor
         [STAThread]
         static void Main()
         {
-            using (var game = new Game1())
-                game.Run();
+            //using (var game = new Game1())
+            //    game.Run();
 
-            // JSON example
-            //SomeData data = new SomeData();
-            //data.age = 30;
-            //data.height = 1.83f;
-            //data.weight = 84.4f;
-
+            //Tile tile = new Tile("SomeTile", new Rectangle(1, 2, 3, 4), new Rectangle(5, 6, 7, 8));
             //JsonSerializerOptions options = new JsonSerializerOptions();
             //options.WriteIndented = true;
-            //string jsonString = JsonSerializer.Serialize(data, options);
-            //File.WriteAllText("Test.json", jsonString);
+            //options.Converters.Add(new TileConverter());
+            //string jsonString = JsonSerializer.Serialize(tile, options);
+            //jsonString = jsonString.Insert(0, "{");
+            //jsonString = jsonString.Insert(jsonString.Length - 1, "}");
+            //File.WriteAllText("converterTest.json", jsonString);
 
-            // JSON deserialization example with user defined type "TsData"
-            //string jsonString = File.ReadAllText("configFiles/tilesets/jsonTilesetTest.ts.json");
-            //TsData t = JsonSerializer.Deserialize<TsData>(jsonString);
-
-            // JSON serialization example with user defined type "TsData"
-            //TsData t2 = new TsData();
-            //t2.AutoTiles = true;
-            //t2.Region = new List<int>() { 10, 22, 300, 400 };
-            //t2.TilesetPath = "tilesets/someTileset";
-            //t2.TileSize = new List<int>() { 16, 16 };
-
-            //JsonSerializerOptions options = new JsonSerializerOptions();
-            //options.WriteIndented = true;
-            //string jsonString2 = JsonSerializer.Serialize(t2, options);
-            //File.WriteAllText("configFiles/tilesets/jsonTilesetTest2.ts.json", jsonString2);
+            JsonSerializerOptions options = new JsonSerializerOptions();
+            options.Converters.Add(new TileConverter());
+            Tile tile = JsonSerializer.Deserialize<Tile>(File.ReadAllText("converterTest.json"), options);
         }
     }
 #endif
