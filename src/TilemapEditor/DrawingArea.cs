@@ -1055,42 +1055,6 @@ namespace TilemapEditor
             writer.WriteEndObject();
 
             writer.Flush();
-
-            
-            //if (System.IO.File.Exists(path))
-            //{
-            //    throw new ArgumentException("The file '" + path + "' already exists.\n" +
-            //        "Delete it manually if you want to overwrite it!");
-            //}
-
-            //System.IO.StreamWriter writer = new System.IO.StreamWriter(path);
-
-            //// Write tileSet to file
-            //writer.WriteLine("TILESET = " + tileSelection.TileSet);
-
-            //// Write each Tile to file
-            //foreach (Tile tile in tiles)
-            //{
-            //    // Separate every Tile by an empty line
-            //    writer.WriteLine("");
-
-            //    // Write Tile information to file
-            //    writer.WriteLine("[TILE]");
-            //    writer.WriteLine("NAME           = " + tile.name);
-            //    writer.WriteLine("TEXTURE_BOUNDS = " + Utility.RectangleToString(tile.textureBounds));
-            //    writer.WriteLine("SCREEN_BOUNDS  = " + Utility.RectangleToString(tile.screenBounds));
-            //}
-            //foreach (Rectangle box in collisionBoxes)
-            //{
-            //    // Separate every Tile by an empty line
-            //    writer.WriteLine("");
-
-            //    // Write Tile information to file
-            //    writer.WriteLine("[COLLISION_BOX]");
-            //    writer.WriteLine("COLLISION_BOUNDS  = " + Utility.RectangleToString(box));
-            //}
-
-            //writer.Close();
         }
     }
 }
