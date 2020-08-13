@@ -14,8 +14,6 @@ namespace TilemapEditor
 
     public static class InputManager
     {
-        #region StaticFields
-
         private static KeyboardState currentKeyboardState;
         private static KeyboardState previousKeyboardState;
         private static List<Keys> buffer = new List<Keys>();
@@ -37,8 +35,6 @@ namespace TilemapEditor
         private const int originalWindowHeight = 1080;
         private static Vector2 mouseResolutionScale = Vector2.Zero;
 
-        #endregion
-        #region StaticProperties
         /// <summary>
         /// Returns true if the most recent input was given by the Keyboard(Any Key has been pressed).
         /// Returns false if the most recent input was given by the GamePad.
@@ -74,8 +70,6 @@ namespace TilemapEditor
             }
         }
 
-        #endregion
-        #region StaticMethods
         /// <summary>
         /// Always call before all you'r input operations(First instruction in Update()).
         /// </summary>
@@ -117,8 +111,6 @@ namespace TilemapEditor
 
         }
 
-        #region Keyboard
-        #region Keys
         /// <summary>
         /// Returns true on the initial press of the given key.
         /// <para>Returns true if the given key was up in the previous Update() call,
@@ -284,10 +276,6 @@ namespace TilemapEditor
         //    return false;
         //}
 
-        #endregion
-        #endregion
-        #region GamePad
-        #region Buttons
         public static bool OnButtonPressed(Buttons button, PlayerIndex playerIndex)
         {
             if (playerIndex == PlayerIndex.One)
@@ -376,8 +364,6 @@ namespace TilemapEditor
             return true;
         }
 
-        #endregion
-
         public static GamePadThumbSticks CurrentThumbSticks(PlayerIndex playerIndex)
         {
             return playerIndex == PlayerIndex.One ? currentGamePadStatePlayerOne.ThumbSticks :
@@ -401,8 +387,7 @@ namespace TilemapEditor
             return playerIndex == PlayerIndex.One ? previousGamePadStatePlayerOne.Triggers :
                                                     previousGamePadStatePlayerTwo.Triggers;
         }
-        #endregion
-        #region Mouse
+
         public static Vector2 CurrentMousePosition()
         {
             return currentMouseState.Position.ToVector2() /** mouseResolutionScale*/;
@@ -473,8 +458,5 @@ namespace TilemapEditor
         {
             return previousMouseState.ScrollWheelValue;
         }
-
-        #endregion
-        #endregion
     }
 }

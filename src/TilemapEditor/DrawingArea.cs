@@ -43,7 +43,6 @@ namespace TilemapEditor
         private bool drawTileSelectionCurrentTileOnMouse = false;
         private TileSelection tileSelection;
 
-
         private Vector2 mouseTravel = Vector2.Zero;
 
         private float zoom = 1;
@@ -194,8 +193,180 @@ namespace TilemapEditor
             }
         }
 
-        #region UpdateHelper
+        public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        {
+            spriteBatch.Begin(samplerState: SamplerState.PointClamp, transformMatrix: CalcZoomMatrix());
 
+            // Draw all Tiles on DrawingArea.
+            foreach (Tile tile in tiles)
+            {
+                spriteBatch.Draw(tileSelection.TileSet, tile.screenBounds, tile.textureBounds, collisionBoxMode ? Color.LightGray :
+                                                                                                                  Color.White);
+            }
+
+            // Draw tileSeleciton's currentTile.
+            if (drawTileSelectionCurrentTileOnMouse)
+            {
+                Game1.MouseVisible = false;
+                spriteBatch.Draw(tileSelection.TileSet, new Rectangle(currentMousePosition.ToPoint(), tileSelection.CurrentTile.screenBounds.Size),
+                                 tileSelection.CurrentTile.textureBounds, Color.White);
+            }
+            else
+            {
+                Game1.MouseVisible = true;
+            }
+
+            // Mark hovered Tile.
+            if (hoveredTile != null &&
+                !movingSelectionWithMouse &&
+                !movingSelectionWithKeys &&
+                !collisionBoxMode)
+            {
+                Primitives2D.DrawRectangle(spriteBatch, hoveredTile.screenBounds, Color.AliceBlue, 5);
+            }
+
+            // Draw selectionBox
+            if (selectionBoxHasStartPoint)
+            {
+                Color color = Color.Blue;
+                color.A = 15;
+
+                Primitives2D.FillRectangle(spriteBatch, selectionBox, color);
+            }
+
+            // Mark selection.
+            if (selection.Count != 0 /* &&
+                !movingSelectionWithMouse &&
+                !movingSelectionWithKeys*/)
+            {
+                Color boxColor = Color.DarkRed;
+                boxColor.A = 50;
+
+                // Mark selection with one Tile.
+                if (selection.Count == 1)
+                {
+                    Primitives2D.FillRectangle(spriteBatch, selection[0].screenBounds, boxColor);
+                }
+
+                // Mark selection with multiple Tiles.
+                else
+                {
+                    Primitives2D.FillRectangle(spriteBatch, minimalBoundingBox, boxColor);
+                }
+            }
+
+            // draw Grid
+            if (gridActivated)
+            {
+                float currentDisplayingWidth = bounds.Width / zoom;
+                float currentDisplayingHeight = bounds.Height / zoom;
+                for (float i = 0; i < -position.X / zoom + currentDisplayingWidth + gridCellSize; i += gridCellSize)
+                {
+                    float y = -position.Y / zoom + currentDisplayingHeight + gridCellSize;
+                    Vector2 start = new Vector2(i, 0);
+                    Vector2 end = new Vector2(i, y);
+                    Primitives2D.DrawLine(spriteBatch, start, end, Color.DarkCyan, 2 / zoom);
+                }
+                for (float i = 0; i < -position.Y / zoom + currentDisplayingHeight + gridCellSize; i += gridCellSize)
+                {
+                    float x = -position.X / zoom + currentDisplayingWidth + gridCellSize;
+                    Vector2 start = new Vector2(0, i);
+                    Vector2 end = new Vector2(x, i);
+                    Primitives2D.DrawLine(spriteBatch, start, end, Color.DarkCyan, 2 / zoom);
+                }
+            }
+            if (collisionBoxMode)
+            {
+                Color lineColor = Color.BlueViolet;
+                Color fillColor = Color.BlueViolet;
+                fillColor.A = 50;
+                if (isCreatingCollisionBox)
+                {
+                    Primitives2D.DrawRectangle(spriteBatch, currentCollisionBox, lineColor, 2 / zoom);
+                    Primitives2D.FillRectangle(spriteBatch, currentCollisionBox, fillColor);
+                }
+                foreach (Rectangle box in collisionBoxes)
+                {
+                    if (box.Contains(currentMousePosition) && !isCreatingCollisionBox)
+                    {
+                        fillColor.G += 100;
+                        Primitives2D.DrawRectangle(spriteBatch, box, lineColor, 2 / zoom);
+                        Primitives2D.FillRectangle(spriteBatch, box, fillColor);
+                        fillColor.G -= 100;
+                    }
+                    else
+                    {
+                        Primitives2D.DrawRectangle(spriteBatch, box, lineColor, 2 / zoom);
+                        Primitives2D.FillRectangle(spriteBatch, box, fillColor);
+                    }
+                }
+            }
+
+            spriteBatch.End();
+        }
+
+        public void SaveToFile(String path)
+        {
+            if (!path.EndsWith(".tm.json"))
+            {
+                throw new FormatException("Given file '" + path + "' is not a tm(Tilemap)File.\n" +
+                    "Provide a file that ends with '.tm.json'.");
+            }
+
+            FileStream fileStream = new FileStream(path, FileMode.Create);
+
+            JsonWriterOptions writerOptions = new JsonWriterOptions();
+            writerOptions.Indented = true;
+            Utf8JsonWriter writer = new Utf8JsonWriter(fileStream, writerOptions);
+
+            writer.WriteStartObject();
+
+            writer.WritePropertyName("TILESET");
+            writer.WriteStringValue("tilesets/HOW_TO_GET_TILESET_NAME_?");
+
+            writer.WritePropertyName("TILES");
+            writer.WriteStartObject();
+
+            for (int i = 0; i < tiles.Count; ++i)
+            {
+                Tile tile = tiles[i];
+
+                writer.WritePropertyName("TILE_" + (i + 1));
+                writer.WriteStartObject();
+
+                // Name
+                writer.WritePropertyName("NAME");
+                writer.WriteStringValue(tile.name);
+
+                // TextureBounds
+                writer.WritePropertyName("TEXTURE_BOUNDS");
+                writer.WriteStartArray();
+                writer.WriteNumberValue(tile.textureBounds.X);
+                writer.WriteNumberValue(tile.textureBounds.Y);
+                writer.WriteNumberValue(tile.textureBounds.Width);
+                writer.WriteNumberValue(tile.textureBounds.Height);
+                writer.WriteEndArray();
+
+                // ScreenBounds
+                writer.WritePropertyName("SCREEN_BOUNDS");
+                writer.WriteStartArray();
+                writer.WriteNumberValue(tile.screenBounds.X);
+                writer.WriteNumberValue(tile.screenBounds.Y);
+                writer.WriteNumberValue(tile.screenBounds.Width);
+                writer.WriteNumberValue(tile.screenBounds.Height);
+                writer.WriteEndArray();
+
+                writer.WriteEndObject();
+            }
+
+            writer.WriteEndObject();
+            writer.WriteEndObject();
+
+            writer.Dispose();
+            fileStream.Dispose();
+        }
+
+        #region UpdateHelper
 
         private void UpdateCollisionDrawing()
         {
@@ -886,182 +1057,5 @@ namespace TilemapEditor
         }
 
         #endregion
-
-        public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
-        {
-            spriteBatch.Begin(samplerState: SamplerState.PointClamp, transformMatrix: CalcZoomMatrix());
-
-            // Draw all Tiles on DrawingArea.
-            foreach (Tile tile in tiles)
-            {
-                spriteBatch.Draw(tileSelection.TileSet, tile.screenBounds, tile.textureBounds, collisionBoxMode ? Color.LightGray :
-                                                                                                                  Color.White);
-            }
-
-            // Draw tileSeleciton's currentTile.
-            if (drawTileSelectionCurrentTileOnMouse)
-            {
-                Game1.MouseVisible = false;
-                spriteBatch.Draw(tileSelection.TileSet, new Rectangle(currentMousePosition.ToPoint(), tileSelection.CurrentTile.screenBounds.Size),
-                                 tileSelection.CurrentTile.textureBounds, Color.White);
-            }
-            else
-            {
-                Game1.MouseVisible = true;
-            }
-
-            // Mark hovered Tile.
-            if (hoveredTile != null &&
-                !movingSelectionWithMouse &&
-                !movingSelectionWithKeys &&
-                !collisionBoxMode)
-            {
-                Primitives2D.DrawRectangle(spriteBatch, hoveredTile.screenBounds, Color.AliceBlue, 5);
-            }
-
-            // Draw selectionBox
-            if (selectionBoxHasStartPoint)
-            {
-                Color color = Color.Blue;
-                color.A = 15;
-
-                Primitives2D.FillRectangle(spriteBatch, selectionBox, color);
-            }
-
-            // Mark selection.
-            if (selection.Count != 0 /* &&
-                !movingSelectionWithMouse &&
-                !movingSelectionWithKeys*/)
-            {
-                Color boxColor = Color.DarkRed;
-                boxColor.A = 50;
-
-                // Mark selection with one Tile.
-                if (selection.Count == 1)
-                {
-                    Primitives2D.FillRectangle(spriteBatch, selection[0].screenBounds, boxColor);
-                }
-
-                // Mark selection with multiple Tiles.
-                else
-                {
-                    Primitives2D.FillRectangle(spriteBatch, minimalBoundingBox, boxColor);
-                }
-            }
-
-            // draw Grid
-            if (gridActivated)
-            {
-                float currentDisplayingWidth = bounds.Width / zoom;
-                float currentDisplayingHeight = bounds.Height / zoom;
-                for (float i = 0; i < -position.X / zoom + currentDisplayingWidth + gridCellSize; i += gridCellSize)
-                {
-                    float y = -position.Y / zoom + currentDisplayingHeight + gridCellSize;
-                    Vector2 start = new Vector2(i, 0);
-                    Vector2 end = new Vector2(i, y);
-                    Primitives2D.DrawLine(spriteBatch, start, end, Color.DarkCyan, 2 / zoom);
-                }
-                for (float i = 0; i < -position.Y / zoom + currentDisplayingHeight + gridCellSize; i += gridCellSize)
-                {
-                    float x = -position.X / zoom + currentDisplayingWidth + gridCellSize;
-                    Vector2 start = new Vector2(0, i);
-                    Vector2 end = new Vector2(x, i);
-                    Primitives2D.DrawLine(spriteBatch, start, end, Color.DarkCyan, 2 / zoom);
-                }
-            }
-            if (collisionBoxMode)
-            {
-                Color lineColor = Color.BlueViolet;
-                Color fillColor = Color.BlueViolet;
-                fillColor.A = 50;
-                if (isCreatingCollisionBox)
-                {
-                    Primitives2D.DrawRectangle(spriteBatch, currentCollisionBox, lineColor, 2 / zoom);
-                    Primitives2D.FillRectangle(spriteBatch, currentCollisionBox, fillColor);
-                }
-                foreach (Rectangle box in collisionBoxes)
-                {
-                    if (box.Contains(currentMousePosition) && !isCreatingCollisionBox)
-                    {
-                        fillColor.G += 100;
-                        Primitives2D.DrawRectangle(spriteBatch, box, lineColor, 2 / zoom);
-                        Primitives2D.FillRectangle(spriteBatch, box, fillColor);
-                        fillColor.G -= 100;
-                    }
-                    else
-                    {
-                        Primitives2D.DrawRectangle(spriteBatch, box, lineColor, 2 / zoom);
-                        Primitives2D.FillRectangle(spriteBatch, box, fillColor);
-                    }
-                }
-            }
-
-            spriteBatch.End();
-        }
-
-        public void LoadContent(ContentManager content)
-        {
-        }
-
-        public void SaveToFile(String path)
-        {
-            if (!path.EndsWith(".tm.json"))
-            {
-                throw new FormatException("Given file '" + path + "' is not a tm(Tilemap)File.\n" +
-                    "Provide a file that ends with '.tm.json'.");
-            }
-
-            FileStream fileStream = new FileStream(path, FileMode.Create);
-
-            JsonWriterOptions writerOptions = new JsonWriterOptions();
-            writerOptions.Indented = true;
-            Utf8JsonWriter writer = new Utf8JsonWriter(fileStream, writerOptions);
-
-            writer.WriteStartObject();
-
-            writer.WritePropertyName("TILESET");
-            writer.WriteStringValue("tilesets/HOW_TO_GET_TILESET_NAME_?");
-
-            writer.WritePropertyName("TILES");
-            writer.WriteStartObject();
-
-            for (int i = 0; i < tiles.Count; ++i)
-            {
-                Tile tile = tiles[i];
-
-                writer.WritePropertyName("TILE_" + (i + 1));
-                writer.WriteStartObject();
-
-                // Name
-                writer.WritePropertyName("NAME");
-                writer.WriteStringValue(tile.name);
-
-                // TextureBounds
-                writer.WritePropertyName("TEXTURE_BOUNDS");
-                writer.WriteStartArray();
-                writer.WriteNumberValue(tile.textureBounds.X);
-                writer.WriteNumberValue(tile.textureBounds.Y);
-                writer.WriteNumberValue(tile.textureBounds.Width);
-                writer.WriteNumberValue(tile.textureBounds.Height);
-                writer.WriteEndArray();
-
-                // ScreenBounds
-                writer.WritePropertyName("SCREEN_BOUNDS");
-                writer.WriteStartArray();
-                writer.WriteNumberValue(tile.screenBounds.X);
-                writer.WriteNumberValue(tile.screenBounds.Y);
-                writer.WriteNumberValue(tile.screenBounds.Width);
-                writer.WriteNumberValue(tile.screenBounds.Height);
-                writer.WriteEndArray();
-
-                writer.WriteEndObject();
-            }
-
-            writer.WriteEndObject();
-            writer.WriteEndObject();
-
-            writer.Dispose();
-            fileStream.Dispose();
-        }
     }
 }

@@ -200,6 +200,117 @@ namespace TilemapEditor
             return animDataPlusSpriteSheet;
         }
 
+        public static TileSelectionData ReadTileSelectionFile(String path, int numTilesPerRow)
+        {
+            // Only allow new json format: example.ts.json
+            if (!path.EndsWith(".ts.json"))
+            {
+                throw new FormatException("Given file '" + path + "' is not a ts(TileSelection)File.\n" +
+                    "Provide a file that ends with '.ts.json'.");
+            }
+
+            // Variables for navigating Json file-structure.
+            String jsonString = File.ReadAllText(path);
+            JsonDocument jsonDoc = JsonDocument.Parse(jsonString);
+            JsonElement tilesOrAutoTilesElement;
+            JsonElement tilesetElement;
+
+            // Variables for storing the information that will be read from the file.
+            List<List<Tile>> tiles = new List<List<Tile>>();
+            tiles.Add(new List<Tile>());
+            String tileset = String.Empty;
+
+            // Read Tileset name/path
+            if (jsonDoc.RootElement.TryGetProperty("TILESET", out tilesetElement))
+            {
+                tileset = tilesetElement.GetString();
+            }
+            else
+            {
+                throw new FormatException("Given file '" + path + "' is missing a TILESET attribute and is therefore " +
+                    "not a valid ts(TileSelection)File.");
+            }
+
+            // Handle normal TileSelection file that specifies each Tile individually.
+            if (jsonDoc.RootElement.TryGetProperty("TILES", out tilesOrAutoTilesElement))
+            {
+                // Iterate over all JsonProperties in the JsonElement "TILES" 
+                // that each represent a Tile.
+                foreach (JsonProperty p in tilesOrAutoTilesElement.EnumerateObject())
+                {
+                    // Create new Tile with given Data.
+                    Tile newTile = new Tile();
+                    newTile.name = p.Name;
+                    newTile.screenBounds = Rectangle.Empty;
+
+                    var textureBoundsValues = p.Value.EnumerateArray().ToList();
+                    newTile.textureBounds.X = textureBoundsValues[0].GetInt32();
+                    newTile.textureBounds.Y = textureBoundsValues[1].GetInt32();
+                    newTile.textureBounds.Width = textureBoundsValues[2].GetInt32();
+                    newTile.textureBounds.Height = textureBoundsValues[3].GetInt32();
+
+                    if (tiles[tiles.Count - 1].Count == numTilesPerRow)
+                    {
+                        tiles.Add(new List<Tile>());
+                    }
+                    tiles[tiles.Count - 1].Add(newTile);
+                }
+            }
+
+            // Handle TileSelection that uses AUTO_TILES to automatically load all
+            // Tiles in a specified REGION of a specified TILE_SIZE.
+            else if (jsonDoc.RootElement.TryGetProperty("AUTO_TILES", out tilesOrAutoTilesElement))
+            {
+                var tileSizeAndRegionAttributes = tilesOrAutoTilesElement.EnumerateObject().ToList();
+
+                var tileSizeValues = tileSizeAndRegionAttributes[0].Value.EnumerateArray().ToList();
+                Vector2 tileSize;
+                tileSize.X = tileSizeValues[0].GetInt32();
+                tileSize.Y = tileSizeValues[1].GetInt32();
+
+                var regionAttributes = tileSizeAndRegionAttributes[1].Value.EnumerateArray().ToList();
+                Rectangle region;
+                region.X = regionAttributes[0].GetInt32();
+                region.Y = regionAttributes[1].GetInt32();
+                region.Width = regionAttributes[2].GetInt32();
+                region.Height = regionAttributes[3].GetInt32();
+
+                int row = 0;
+                int column = 0;
+                int numAutoTiles = 0;
+                Rectangle textureBounds = Rectangle.Empty;
+
+                while ((region.Location.ToVector2().Y + (row * tileSize.Y)) < region.Bottom)
+                {
+                    if ((region.Location.ToVector2().X + (column * tileSize.X)) >= region.Right)
+                    {
+                        ++row;
+                        column = 0;
+                    }
+
+                    textureBounds = new Rectangle((region.Location.ToVector2() + new Vector2(column++ * tileSize.X, row * tileSize.Y)).ToPoint(),
+                                                  tileSize.ToPoint());
+
+                    if (tiles[tiles.Count - 1].Count == numTilesPerRow)
+                    {
+                        tiles.Add(new List<Tile>());
+                    }
+                    tiles[tiles.Count - 1].Add(new Tile("auto_tile_" + numAutoTiles++.ToString(),
+                                               textureBounds, Rectangle.Empty));
+                }
+            }
+
+            // If the given file doesn't contain either a TILES or AUTO_TILES object,
+            // it is not a valid TileSelection file.
+            else
+            {
+                throw new ArgumentException("Given file '" + path + "' is missing a TILES or AUTO_TILES attribute and is therefore " +
+                    "not a valid ts(TileSelection)File.");
+            }
+
+            return new TileSelectionData(tiles, tileset);
+        }
+
         #region ReadAnimationFileHelper
         private static List<Rectangle> ReadFrames(String line)
         {
@@ -424,116 +535,5 @@ namespace TilemapEditor
             return frameOffsets;
         }
         #endregion
-
-        public static TileSelectionData ReadTileSelectionFile(String path, int numTilesPerRow)
-        {
-            // Only allow new json format: example.ts.json
-            if (!path.EndsWith(".ts.json"))
-            {
-                throw new FormatException("Given file '" + path + "' is not a ts(TileSelection)File.\n" +
-                    "Provide a file that ends with '.ts.json'.");
-            }
-
-            // Variables for navigating Json file-structure.
-            String jsonString = File.ReadAllText(path);
-            JsonDocument jsonDoc = JsonDocument.Parse(jsonString);
-            JsonElement tilesOrAutoTilesElement;
-            JsonElement tilesetElement;
-
-            // Variables for storing the information that will be read from the file.
-            List<List<Tile>> tiles = new List<List<Tile>>();
-            tiles.Add(new List<Tile>());
-            String tileset = String.Empty;
-
-            // Read Tileset name/path
-            if (jsonDoc.RootElement.TryGetProperty("TILESET", out tilesetElement))
-            {
-                tileset = tilesetElement.GetString();
-            }
-            else
-            {
-                throw new FormatException("Given file '" + path + "' is missing a TILESET attribute and is therefore " +
-                    "not a valid ts(TileSelection)File.");
-            }
-
-            // Handle normal TileSelection file that specifies each Tile individually.
-            if (jsonDoc.RootElement.TryGetProperty("TILES", out tilesOrAutoTilesElement))
-            {
-                // Iterate over all JsonProperties in the JsonElement "TILES" 
-                // that each represent a Tile.
-                foreach (JsonProperty p in tilesOrAutoTilesElement.EnumerateObject())
-                {
-                    // Create new Tile with given Data.
-                    Tile newTile = new Tile();
-                    newTile.name = p.Name;
-                    newTile.screenBounds = Rectangle.Empty;
-
-                    var textureBoundsValues = p.Value.EnumerateArray().ToList();
-                    newTile.textureBounds.X = textureBoundsValues[0].GetInt32();
-                    newTile.textureBounds.Y = textureBoundsValues[1].GetInt32();
-                    newTile.textureBounds.Width = textureBoundsValues[2].GetInt32();
-                    newTile.textureBounds.Height = textureBoundsValues[3].GetInt32();
-
-                    if (tiles[tiles.Count - 1].Count == numTilesPerRow)
-                    {
-                        tiles.Add(new List<Tile>());
-                    }
-                    tiles[tiles.Count - 1].Add(newTile);
-                }
-            }
-
-            // Handle TileSelection that uses AUTO_TILES to automatically load all
-            // Tiles in a specified REGION of a specified TILE_SIZE.
-            else if (jsonDoc.RootElement.TryGetProperty("AUTO_TILES", out tilesOrAutoTilesElement))
-            {
-                var tileSizeAndRegionAttributes = tilesOrAutoTilesElement.EnumerateObject().ToList();
-
-                var tileSizeValues = tileSizeAndRegionAttributes[0].Value.EnumerateArray().ToList();
-                Vector2 tileSize;
-                tileSize.X = tileSizeValues[0].GetInt32();
-                tileSize.Y = tileSizeValues[1].GetInt32();
-
-                var regionAttributes = tileSizeAndRegionAttributes[1].Value.EnumerateArray().ToList();
-                Rectangle region;
-                region.X = regionAttributes[0].GetInt32();
-                region.Y = regionAttributes[1].GetInt32();
-                region.Width = regionAttributes[2].GetInt32();
-                region.Height = regionAttributes[3].GetInt32();
-
-                int row = 0;
-                int column = 0;
-                int numAutoTiles = 0;
-                Rectangle textureBounds = Rectangle.Empty;
-
-                while ((region.Location.ToVector2().Y + (row * tileSize.Y)) < region.Bottom)
-                {
-                    if ((region.Location.ToVector2().X + (column * tileSize.X)) >= region.Right)
-                    {
-                        ++row;
-                        column = 0;
-                    }
-
-                    textureBounds = new Rectangle((region.Location.ToVector2() + new Vector2(column++ * tileSize.X, row * tileSize.Y)).ToPoint(),
-                                                  tileSize.ToPoint());
-
-                    if (tiles[tiles.Count - 1].Count == numTilesPerRow)
-                    {
-                        tiles.Add(new List<Tile>());
-                    }
-                    tiles[tiles.Count - 1].Add(new Tile("auto_tile_" + numAutoTiles++.ToString(),
-                                               textureBounds, Rectangle.Empty));
-                }
-            }
-
-            // If the given file doesn't contain either a TILES or AUTO_TILES object,
-            // it is not a valid TileSelection file.
-            else
-            {
-                throw new ArgumentException("Given file '" + path + "' is missing a TILES or AUTO_TILES attribute and is therefore " +
-                    "not a valid ts(TileSelection)File.");
-            }
-
-            return new TileSelectionData(tiles, tileset);
-        }
     }
 }

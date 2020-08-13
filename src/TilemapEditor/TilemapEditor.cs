@@ -84,7 +84,96 @@ namespace TilemapEditor
             }
         }
 
+        public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        {
+            drawingArea.Draw(gameTime, spriteBatch);
+
+            if (!tileSelection.Hidden)
+            {
+                tileSelection.Draw(gameTime, spriteBatch);
+            }
+
+            if (drawInfoText)
+            {
+                Vector2 textPosition = viewport.Bounds.Size.ToVector2() * new Vector2(0.5f, 0.5f) -
+                                       (fontSize * new Vector2(0.5f, 0.5f));
+
+                infoText = "General\n" +
+                           "MousePos: " + drawingArea.ZoomedMousePosition + "\n" +
+                           "Hold MiddleMouseButton: Drag screen\n" +
+                           "Hold LeftMouseButton: Rectangle selection\n" +
+                           "MouseWheel: Zoom in/out\n" +
+                           "Hold Arrow Keys: Move selection slowly\n" +
+                           "Hotkeys\n" +
+                           "-------\n" +
+                           "STRG+S: Save\n" +
+                           "STRG+L: Load\n" +
+                           "STRG+T: Load TileSelection\n" +
+                           "STRG+C: Copy Selection\n" +
+                           "STRG+X: Cut Selection\n" +
+                           "STRG+V: Paste Copy/Cut to Mouse Position\n" +
+                           "STRG+G: Toggle Grid\n" +
+                           "STRG+H: Show/Hide TileSelection\n" +
+                           "Delete/Entf: Delete selected Tiles\n" +
+                           "DrawingArea\n" +
+                           "-----------\n" +
+                           "NumTiles: " + drawingArea.Tiles.Count + "\n" +
+                           "NumTilesSelection: " + drawingArea.NumTilesSelection + "\n" +
+                           "NumTilesCopyBuffer: " + drawingArea.NumTilesCopyBuffer + "\n" +
+                           "CurrentTileInfo: \n" +
+                           drawingArea.SelectionInfo;
+
+                spriteBatch.Begin();
+
+                spriteBatch.DrawString(font, infoText, textPosition, Color.Red);
+
+                spriteBatch.End();
+            }
+        }
+
+        public void LoadContent(ContentManager content, Viewport viewport)
+        {
+            this.content = content;
+
+            this.viewport = viewport;
+
+            infoText = "General\n" +
+                           "MousePos: \n" +
+                           "Hold MiddleMouseButton: Drag screen\n" +
+                           "Hold LeftMouseButton: Rectangle selection\n" +
+                           "MouseWheel: Zoom in/out\n" +
+                           "Hold Arrow Keys: Move selection slowly\n" +
+                           "Hotkeys\n" +
+                           "-------\n" +
+                           "STRG+S: Save\n" +
+                           "STRG+L: Load\n" +
+                           "STRG+T: Load TileSelection\n" +
+                           "STRG+C: Copy Selection\n" +
+                           "STRG+X: Cut Selection\n" +
+                           "STRG+V: Paste Copy/Cut to Mouse Position\n" +
+                           "STRG+G: Toggle Grid\n" +
+                           "STRG+H: Show/Hide TileSelection\n" +
+                           "Delete/Entf: Delete selected Tiles\n" +
+                           "DrawingArea\n" +
+                           "-----------\n" +
+                           "NumTiles: \n" +
+                           "NumTilesSelection: \n" +
+                           "NumTilesCopyBuffer: \n" +
+                           "CurrentTileInfo: \n";
+
+            font = content.Load<SpriteFont>("fonts/font_default");
+            fontSize = font.MeasureString(infoText);
+
+            drawingArea = new DrawingArea(viewport.Bounds, tileSelection);
+            tileSelection.ReadTilesFromFile("configFiles/tilesets/testAutoTilesFile.ts.json",
+                                             content);
+
+            tileSelection.LoadContent(content);
+            drawingArea.LoadContent(content);
+        }
+
         #region UpdateHelper
+
         private void CheckForSavingTilemapToFile()
         {
             // Namespace muss hier voll spezifiziert sein wegen WindowsForms ambiguity.
@@ -203,94 +292,6 @@ namespace TilemapEditor
         }
 
         #endregion
-
-        public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
-        {
-            drawingArea.Draw(gameTime, spriteBatch);
-
-            if (!tileSelection.Hidden)
-            {
-                tileSelection.Draw(gameTime, spriteBatch);
-            }
-
-            if (drawInfoText)
-            {
-                Vector2 textPosition = viewport.Bounds.Size.ToVector2() * new Vector2(0.5f, 0.5f) -
-                                       (fontSize * new Vector2(0.5f, 0.5f));
-
-                infoText = "General\n" +
-                           "MousePos: " + drawingArea.ZoomedMousePosition + "\n" +
-                           "Hold MiddleMouseButton: Drag screen\n" +
-                           "Hold LeftMouseButton: Rectangle selection\n" +
-                           "MouseWheel: Zoom in/out\n" +
-                           "Hold Arrow Keys: Move selection slowly\n" +
-                           "Hotkeys\n" +
-                           "-------\n" +
-                           "STRG+S: Save\n" +
-                           "STRG+L: Load\n" +
-                           "STRG+T: Load TileSelection\n" +
-                           "STRG+C: Copy Selection\n" +
-                           "STRG+X: Cut Selection\n" +
-                           "STRG+V: Paste Copy/Cut to Mouse Position\n" +
-                           "STRG+G: Toggle Grid\n" +
-                           "STRG+H: Show/Hide TileSelection\n" +
-                           "Delete/Entf: Delete selected Tiles\n" +
-                           "DrawingArea\n" +
-                           "-----------\n" +
-                           "NumTiles: " + drawingArea.Tiles.Count + "\n" +
-                           "NumTilesSelection: " + drawingArea.NumTilesSelection + "\n" +
-                           "NumTilesCopyBuffer: " + drawingArea.NumTilesCopyBuffer + "\n" +
-                           "CurrentTileInfo: \n" +
-                           drawingArea.SelectionInfo;
-
-                spriteBatch.Begin();
-
-                spriteBatch.DrawString(font, infoText, textPosition, Color.Red);
-
-                spriteBatch.End();
-            }
-        }
-
-        public void LoadContent(ContentManager content, Viewport viewport)
-        {
-            this.content = content;
-
-            this.viewport = viewport;
-
-            infoText = "General\n" +
-                           "MousePos: \n" +
-                           "Hold MiddleMouseButton: Drag screen\n" +
-                           "Hold LeftMouseButton: Rectangle selection\n" +
-                           "MouseWheel: Zoom in/out\n" +
-                           "Hold Arrow Keys: Move selection slowly\n" +
-                           "Hotkeys\n" +
-                           "-------\n" +
-                           "STRG+S: Save\n" +
-                           "STRG+L: Load\n" +
-                           "STRG+T: Load TileSelection\n" +
-                           "STRG+C: Copy Selection\n" +
-                           "STRG+X: Cut Selection\n" +
-                           "STRG+V: Paste Copy/Cut to Mouse Position\n" +
-                           "STRG+G: Toggle Grid\n" +
-                           "STRG+H: Show/Hide TileSelection\n" +
-                           "Delete/Entf: Delete selected Tiles\n" +
-                           "DrawingArea\n" +
-                           "-----------\n" +
-                           "NumTiles: \n" +
-                           "NumTilesSelection: \n" +
-                           "NumTilesCopyBuffer: \n" +
-                           "CurrentTileInfo: \n";
-
-            font = content.Load<SpriteFont>("fonts/font_default");
-            fontSize = font.MeasureString(infoText);
-
-            drawingArea = new DrawingArea(viewport.Bounds, tileSelection);
-            tileSelection.ReadTilesFromFile("configFiles/tilesets/testAutoTilesFile.ts.json",
-                                             content);
-
-            tileSelection.LoadContent(content);
-            drawingArea.LoadContent(content);
-        }
 
         private void ReadTilemapFile(String path)
         {
