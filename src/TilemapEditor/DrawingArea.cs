@@ -50,7 +50,6 @@ namespace TilemapEditor
 
         private Tile hoveredTile = null;
         private List<Tile> copyBuffer = new List<Tile>();
-        private List<Tile> undoBuffer = new List<Tile>();
         private List<Tile> selection = new List<Tile>();
         private Rectangle selectionBox = Rectangle.Empty;
         private Vector2 selectionBoxStartPoint = Vector2.Zero;
@@ -141,13 +140,9 @@ namespace TilemapEditor
 
         public void Update(GameTime gameTime)
         {
-            // Correct for zooming.
-            currentMousePosition = InputManager.CurrentMousePosition();
-            currentMousePosition -= position;
-            currentMousePosition /= zoom;
-            Vector2 previousMousePosition = InputManager.PreviousMousePosition();
-            previousMousePosition -= position;
-            previousMousePosition /= zoom;
+            // Correct mouse positions for zooming.
+            currentMousePosition = (InputManager.CurrentMousePosition() - position) / zoom;
+            Vector2 previousMousePosition = (InputManager.PreviousMousePosition() - position) / zoom;
             mouseTravel = currentMousePosition - previousMousePosition;
 
             // Update dragging.
@@ -159,13 +154,14 @@ namespace TilemapEditor
                 if (position.Y > 0) position.Y = positionTemp.Y;
             }
 
-            //toggle collision box mode
+            // toggle collision box mode
             if (InputManager.OnKeyCombinationPressed(Keys.LeftControl, Keys.C, Keys.B))
             {
                 collisionBoxMode = !collisionBoxMode;
                 tileSelection.Hidden = collisionBoxMode;
             }
-            //toggle Grid
+
+            // toggle Grid
             if (InputManager.OnKeyCombinationPressed(Keys.LeftControl, Keys.G))
             {
                 gridActivated = !gridActivated;
@@ -177,20 +173,21 @@ namespace TilemapEditor
             }
             else
             {
-                //Snap all Tiles
+                // Snap all Tiles
                 if (gridActivated && InputManager.OnKeyCombinationPressed(Keys.LeftControl, Keys.LeftAlt, Keys.S))
                 {
                     SnapAllTilesToGrid();
                 }
 
-                // Update all DrawingArea components.
-                UpdateTileDrawing();
-                UpdateHoveredTile();
-                UpdateDetectingSelection();
-                UpdateMovingSelection(gameTime);
-                UpdateSelectionCopyCutPasteDelete();
-                UpdateScalingSelection();
+                
             }
+            // Update all DrawingArea components.
+            UpdateTileDrawing();
+            UpdateHoveredTile();
+            UpdateDetectingSelection();
+            UpdateMovingSelection(gameTime);
+            UpdateSelectionCopyCutPasteDelete();
+            UpdateScalingSelection();
         }
 
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
@@ -305,6 +302,11 @@ namespace TilemapEditor
             spriteBatch.End();
         }
 
+        public void LoadContent(ContentManager content)
+        {
+
+        }
+
         public void SaveToFile(String path)
         {
             if (!path.EndsWith(".tm.json"))
@@ -314,7 +316,6 @@ namespace TilemapEditor
             }
 
             FileStream fileStream = new FileStream(path, FileMode.Create);
-
             JsonWriterOptions writerOptions = new JsonWriterOptions();
             writerOptions.Indented = true;
             Utf8JsonWriter writer = new Utf8JsonWriter(fileStream, writerOptions);
