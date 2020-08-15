@@ -458,5 +458,10 @@ namespace TilemapEditor
         {
             return previousMouseState.ScrollWheelValue;
         }
+
+        public static bool ScrollWheelMoved()
+        {
+            return currentMouseState.ScrollWheelValue != previousMouseState.ScrollWheelValue;
+        }
     }
 }
