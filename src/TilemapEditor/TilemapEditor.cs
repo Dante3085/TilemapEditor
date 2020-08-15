@@ -11,6 +11,8 @@ using System.Text.Json;
 using System.IO;
 using System.Linq;
 
+using TilemapEditor.DrawingAreaComponents;
+
 namespace TilemapEditor
 {
     // TODO: Resolve resolution problems.
@@ -169,7 +171,6 @@ namespace TilemapEditor
                                              content);
 
             tileSelection.LoadContent(content);
-            drawingArea.LoadContent(content);
         }
 
         #region UpdateHelper
