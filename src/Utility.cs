@@ -3,6 +3,7 @@ using System;
 using System.Text.RegularExpressions;
 using System.Collections.Generic;
 using System.Linq;
+using MonoGame.Extended;
 
 namespace TilemapEditor
 {
@@ -108,6 +109,25 @@ namespace TilemapEditor
         public static String RectangleToString(Rectangle rectangle)
         {
             return "(" + rectangle.X + ", " + rectangle.Y + ", " + rectangle.Width + ", " + rectangle.Height + ")";
+        }
+
+        public static String RectangleFToString(RectangleF rectanglef)
+        {
+            return "(" + rectanglef.X + ", " + rectanglef.Y + ", " + rectanglef.Width + ", " + rectanglef.Height + ")";
+        }
+
+        /// <summary>
+        /// Return whether or no r1 contains r2
+        /// </summary>
+        /// <param name="r1"></param>
+        /// <param name="r2"></param>
+        /// <returns></returns>
+        public static bool Contains(RectangleF r1, RectangleF r2)
+        {
+            return r1.Contains(r2.TopLeft) &&
+                   r1.Contains(new Point2(r2.TopLeft.X + r2.Width, r2.TopLeft.Y)) &&
+                   r1.Contains(r2.BottomRight) &&
+                   r1.Contains(new Point2(r2.TopLeft.X, r2.TopLeft.Y + r2.Height));
         }
 
         // C# Mod rechnet nicht wie gewünscht
