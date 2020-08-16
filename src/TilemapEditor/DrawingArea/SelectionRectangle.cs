@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using C3.MonoGame;
+using MonoGame.Extended;
 
 namespace TilemapEditor.DrawingAreaComponents
 {
@@ -15,7 +16,7 @@ namespace TilemapEditor.DrawingAreaComponents
     public class SelectionRectangle
     {
         private Vector2 selectionBoxStartPoint = Vector2.Zero;
-        private Rectangle selectionBox = Rectangle.Empty;
+        private RectangleF selectionBox = RectangleF.Empty;
 
         public bool SelectionBoxHasStartPoint
         {
@@ -29,13 +30,13 @@ namespace TilemapEditor.DrawingAreaComponents
         }
 
         public void Update(GameTime gameTime, List<Tile> tiles, List<Tile> selectedTiles, Vector2 currentMousePosition, 
-                           ref Rectangle minimalBoundingBox)
+                           ref RectangleF minimalBoundingBox)
         {
             if (InputManager.OnRightMouseButtonClicked())
             {
                 selectionBoxStartPoint = currentMousePosition;
                 SelectionBoxHasStartPoint = true;
-                minimalBoundingBox = Rectangle.Empty;
+                minimalBoundingBox = RectangleF.Empty;
             }
             else if (InputManager.OnRightMouseButtonReleased())
             {
@@ -53,7 +54,7 @@ namespace TilemapEditor.DrawingAreaComponents
                 selectedTiles.Clear();
                 foreach (Tile tile in tiles)
                 {
-                    if (selectionBox.Contains(tile.screenBounds))
+                    if (Utility.Contains(selectionBox, tile.screenBounds))
                     {
                         selectedTiles.Add(tile);
 
@@ -70,7 +71,7 @@ namespace TilemapEditor.DrawingAreaComponents
                             bottomRight.Y = tile.screenBounds.Bottom;
                     }
                 }
-                minimalBoundingBox = new Rectangle(topLeft.ToPoint(), (bottomRight - topLeft).ToPoint());
+                minimalBoundingBox = new RectangleF(topLeft, (bottomRight - topLeft));
             }
             if (SelectionBoxHasStartPoint && InputManager.IsRightMouseButtonDown())
             {
@@ -88,7 +89,7 @@ namespace TilemapEditor.DrawingAreaComponents
                 Color color = Color.Blue;
                 color.A = 15;
 
-                Primitives2D.FillRectangle(spriteBatch, selectionBox, color);
+                Primitives2D.FillRectangle(spriteBatch, selectionBox.ToRectangle(), color);
             }
         }
     }

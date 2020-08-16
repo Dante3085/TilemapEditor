@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
+using MonoGame.Extended;
 
 namespace TilemapEditor
 {
@@ -40,7 +41,8 @@ namespace TilemapEditor
         {
             foreach (Tile tile in tiles)
             {
-                spriteBatch.Draw(tileSet, tile.screenBounds, tile.textureBounds, Color.White);
+                spriteBatch.Draw(tileSet, tile.screenBounds.ToRectangle(), 
+                    tile.textureBounds.ToRectangle(), Color.White);
             }
         }
 

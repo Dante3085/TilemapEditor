@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MonoGame.Extended;
 
 namespace TilemapEditor.DrawingAreaComponents
 {
@@ -37,7 +38,7 @@ namespace TilemapEditor.DrawingAreaComponents
             List<Tile> tiles,
             List<Tile> selectedTiles,
             Vector2 currentMousePosition,
-            ref Rectangle selectedTilesMinimalBoundingBox,
+            ref RectangleF selectedTilesMinimalBoundingBox,
             Grid grid
             )
         {
@@ -60,15 +61,17 @@ namespace TilemapEditor.DrawingAreaComponents
             // Draw all Tiles on DrawingArea.
             foreach (Tile tile in tiles)
             {
-                spriteBatch.Draw(tileset, tile.screenBounds, tile.textureBounds, collisionBoxMode ? Color.LightGray : Color.White);
+                spriteBatch.Draw(tileset, tile.screenBounds.ToRectangle(), tile.textureBounds.ToRectangle(), 
+                    collisionBoxMode ? Color.LightGray : Color.White);
             }
 
             // Draw tileSeleciton's currentTile.
             if (drawTileSelectionCurrentTileOnMouse)
             {
                 Game1.MouseVisible = false;
-                spriteBatch.Draw(tileset, new Rectangle(currentMousePosition.ToPoint(), tileSelectionCurrentTile.screenBounds.Size),
-                                 tileSelectionCurrentTile.textureBounds, Color.White);
+                spriteBatch.Draw(tileset, new Rectangle(currentMousePosition.ToPoint(), 
+                    tileSelectionCurrentTile.screenBounds.ToRectangle().Size), 
+                    tileSelectionCurrentTile.textureBounds.ToRectangle(), Color.White);
             }
             else
             {
@@ -112,7 +115,7 @@ namespace TilemapEditor.DrawingAreaComponents
                 {
                     // If last added Tile and tileSelection's currentTile at currentMousePosition overlap, 
                     // draw tileSelection's currentTile again.
-                    if (!tiles[tiles.Count - 1].screenBounds.Intersects(new Rectangle(currentMousePosition.ToPoint(), 
+                    if (!tiles[tiles.Count - 1].screenBounds.Intersects(new RectangleF(currentMousePosition, 
                                                                             tileSelectionCurrentTile.screenBounds.Size)))
                     {
                         DrawTileSelectionCurrentTile(tileSelectionCurrentTile, currentMousePosition, tiles, grid);
@@ -127,12 +130,13 @@ namespace TilemapEditor.DrawingAreaComponents
 
         private void DrawTileSelectionCurrentTile(Tile tileSelectionCurrentTile, Vector2 currentMousePosition, List<Tile> tiles, Grid grid)
         {
-            Tile newTile = new Tile(tileSelectionCurrentTile.name, tileSelectionCurrentTile.textureBounds,
-                                    new Rectangle(currentMousePosition.ToPoint(), tileSelectionCurrentTile.screenBounds.Size));
+            Tile newTile = new Tile(tileSelectionCurrentTile.name, 
+                tileSelectionCurrentTile.textureBounds, new RectangleF(currentMousePosition.ToPoint(), 
+                tileSelectionCurrentTile.screenBounds.Size));
 
             if (grid.GridActivated)
-                newTile.screenBounds.Location += grid.GetSnappingVectorForGivenPosition(newTile.screenBounds.Location.ToVector2()).ToPoint();
-
+                newTile.screenBounds.Position += grid.GetSnappingVectorForGivenPosition(newTile.screenBounds.Position);
+            
             tiles.Add(newTile);
         }
 
@@ -142,7 +146,7 @@ namespace TilemapEditor.DrawingAreaComponents
             bool tileSelectionIsHoveredByMouse,
             List<Tile> selectedTiles,
             List<Tile> tiles,
-            ref Rectangle selectedTilesMinimalBoundingBox,
+            ref RectangleF selectedTilesMinimalBoundingBox,
             Vector2 currentMousePosition
             )
         {
@@ -171,7 +175,7 @@ namespace TilemapEditor.DrawingAreaComponents
             (
             List<Tile> tiles,
             List<Tile> selectedTiles,
-            ref Rectangle selectedTilesMinimalBoundingBox
+            ref RectangleF selectedTilesMinimalBoundingBox
             )
         {
             if (selectedTiles.Count != 0 && InputManager.OnKeyCombinationPressed(Keys.LeftControl, Keys.X))
@@ -185,7 +189,7 @@ namespace TilemapEditor.DrawingAreaComponents
                     return selectedTiles.Contains(tile);
                 });
 
-                selectedTilesMinimalBoundingBox = Rectangle.Empty;
+                selectedTilesMinimalBoundingBox = RectangleF.Empty;
             }
         }
 
@@ -193,7 +197,7 @@ namespace TilemapEditor.DrawingAreaComponents
             (
             List<Tile> tiles,
             List<Tile> selectedTiles,
-            ref Rectangle selectedTilesMinimalBoundingBox
+            ref RectangleF selectedTilesMinimalBoundingBox
             )
         {
             if (selectedTiles.Count != 0 && InputManager.OnKeyPressed(Keys.Delete))
@@ -203,7 +207,7 @@ namespace TilemapEditor.DrawingAreaComponents
                     return selectedTiles.Contains(tile);
                 });
                 selectedTiles.Clear();
-                selectedTilesMinimalBoundingBox = Rectangle.Empty;
+                selectedTilesMinimalBoundingBox = RectangleF.Empty;
             }
         }
 
@@ -211,14 +215,15 @@ namespace TilemapEditor.DrawingAreaComponents
         {
             if (copyBuffer.Count != 0 && InputManager.OnKeyCombinationPressed(Keys.LeftControl, Keys.V))
             {
-                Vector2 shiftVector = currentMousePosition - (copyBuffer[0].screenBounds.Location.ToVector2());
+                Vector2 shiftVector = currentMousePosition - new Vector2(copyBuffer[0].screenBounds.Position.X,
+                                                                         copyBuffer[0].screenBounds.Position.Y);
 
                 foreach (Tile tile in copyBuffer)
                 {
-                    Vector2 newTilePosition = tile.screenBounds.Location.ToVector2() + shiftVector;
+                    Vector2 newTilePosition = tile.screenBounds.Position + shiftVector;
 
-                    Tile newTile = new Tile(tile.name, tile.textureBounds,
-                        new Rectangle(newTilePosition.ToPoint(), tile.screenBounds.Size));
+                    Tile newTile = new Tile(tile.name, tile.textureBounds, 
+                        new RectangleF(newTilePosition, tile.screenBounds.Size));
 
                     tiles.Add(newTile);
                 }

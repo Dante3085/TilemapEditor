@@ -4,14 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
+using MonoGame.Extended;
 
 namespace TilemapEditor
 {
     public class Tile
     {
         public String name;
-        public Rectangle textureBounds;
-        public Rectangle screenBounds;
+        public RectangleF textureBounds;
+        public RectangleF screenBounds;
 
         public Tile()
         {
@@ -20,7 +21,7 @@ namespace TilemapEditor
             screenBounds = Rectangle.Empty;
         }
 
-        public Tile(String name, Rectangle textureBounds, Rectangle screenBounds)
+        public Tile(String name, RectangleF textureBounds, RectangleF screenBounds)
         {
             this.name = name;
             this.textureBounds = textureBounds;
@@ -36,8 +37,8 @@ namespace TilemapEditor
 
         public override string ToString()
         {
-            return "TILE{" + name + ", " + Utility.RectangleToString(textureBounds) + ", " +
-                   Utility.RectangleToString(screenBounds) + "}";
+            return "TILE{" + name + ", " + Utility.RectangleFToString(textureBounds) + ", " +
+                   Utility.RectangleFToString(screenBounds) + "}";
         }
     }
 }

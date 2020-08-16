@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
 using C3.MonoGame;
 using Microsoft.Xna.Framework.Input;
+using MonoGame.Extended;
 
 namespace TilemapEditor
 {
@@ -151,7 +152,7 @@ namespace TilemapEditor
                         {
                             if (tile.screenBounds.Contains(currentMousePosition))
                             {
-                                tileHoveredByMouseMarker = tile.screenBounds;
+                                tileHoveredByMouseMarker = tile.screenBounds.ToRectangle();
                                 tileHoveredByMouse = tile;
 
                                 // Break both loops if we found a Tile that the mouse currently hovers.
@@ -220,7 +221,8 @@ namespace TilemapEditor
             {
                 foreach (Tile tile in rows)
                 {
-                    spriteBatch.Draw(tileSet, tile.screenBounds, tile.textureBounds, Color.White);
+                    spriteBatch.Draw(tileSet, tile.screenBounds.ToRectangle(),
+                        tile.textureBounds.ToRectangle(), Color.White);
                 }
             }
 
@@ -251,7 +253,7 @@ namespace TilemapEditor
 
             tileHoveredByMouse = tiles[0][0];
             UpdateTileBounds();
-            tileHoveredByMouseMarker = tiles[0][0].screenBounds;
+            tileHoveredByMouseMarker = tiles[0][0].screenBounds.ToRectangle();
         }
 
         public void ReadTilesFromFile(String file, ContentManager content)
@@ -288,12 +290,12 @@ namespace TilemapEditor
 
             if (tileHoveredByMouse != null)
             {
-                tileHoveredByMouseMarker = tileHoveredByMouse.screenBounds;
+                tileHoveredByMouseMarker = tileHoveredByMouse.screenBounds.ToRectangle();
             }
 
             if (currentTile != null)
             {
-                currentTileMarker = currentTile.screenBounds;
+                currentTileMarker = currentTile.screenBounds.ToRectangle();
             }
         }
     }

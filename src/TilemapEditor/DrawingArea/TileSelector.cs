@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using C3.MonoGame;
+using MonoGame.Extended;
 
 namespace TilemapEditor.DrawingAreaComponents
 {
@@ -17,12 +18,12 @@ namespace TilemapEditor.DrawingAreaComponents
     {
         private SelectionRectangle selectionRectangle = new SelectionRectangle();
         private Tile drawingAreaHoveredTile = null;
-        private Rectangle selectedTilesMinimalBoundingBox = Rectangle.Empty;
+        private RectangleF selectedTilesMinimalBoundingBox = RectangleF.Empty;
         private List<Tile> selectedTiles = new List<Tile>();
 
         public List<Tile> SelectedTiles { get => selectedTiles; }
 
-        public ref Rectangle SelectedTilesMinimalBoundingBox { get => ref selectedTilesMinimalBoundingBox; }
+        public ref RectangleF SelectedTilesMinimalBoundingBox { get => ref selectedTilesMinimalBoundingBox; }
 
         public bool SelectionBoxHasStartPoint { get => selectionRectangle.SelectionBoxHasStartPoint; }
 
@@ -66,7 +67,8 @@ namespace TilemapEditor.DrawingAreaComponents
                 notMovingSelectedTilesWithKeys &&
                 notInCollisionBoxMode)
             {
-                Primitives2D.DrawRectangle(spriteBatch, drawingAreaHoveredTile.screenBounds, Color.AliceBlue, 5);
+                Primitives2D.DrawRectangle(spriteBatch, drawingAreaHoveredTile.screenBounds.ToRectangle(), 
+                    Color.AliceBlue, 5);
             }
 
             // Mark selection.
@@ -80,13 +82,15 @@ namespace TilemapEditor.DrawingAreaComponents
                 // Mark selection with one Tile.
                 if (selectedTiles.Count == 1)
                 {
-                    Primitives2D.FillRectangle(spriteBatch, selectedTiles[0].screenBounds, boxColor);
+                    Primitives2D.FillRectangle(spriteBatch, selectedTiles[0].screenBounds.ToRectangle(), 
+                        boxColor);
                 }
 
                 // Mark selection with multiple Tiles.
                 else
                 {
-                    Primitives2D.FillRectangle(spriteBatch, selectedTilesMinimalBoundingBox, boxColor);
+                    Primitives2D.FillRectangle(spriteBatch, selectedTilesMinimalBoundingBox.ToRectangle(), 
+                        boxColor);
                 }
             }
         }
@@ -154,7 +158,8 @@ namespace TilemapEditor.DrawingAreaComponents
             if (CantDetectSelection(tileSelectionIsVisible, tileSelectionIsHoveredByMouse, tileSelectionCurrentTileIsDrawnOnMouse, movingSelectedTilesWithMouse))
                 return;
 
-            selectionRectangle.Update(gameTime, drawingAreaTiles, selectedTiles, currentMousePosition, ref selectedTilesMinimalBoundingBox);
+            selectionRectangle.Update(gameTime, drawingAreaTiles, selectedTiles, currentMousePosition, 
+                ref selectedTilesMinimalBoundingBox);
             UpdateSelectingAllTiles(drawingAreaTiles);
             UpdateSelectingIndividualTile(currentMousePosition);
         } 
@@ -189,7 +194,7 @@ namespace TilemapEditor.DrawingAreaComponents
                 {
                     selectedTiles.Clear();
 
-                    selectedTilesMinimalBoundingBox = Rectangle.Empty;
+                    selectedTilesMinimalBoundingBox = RectangleF.Empty;
                 }
                 else
                 {
@@ -209,7 +214,7 @@ namespace TilemapEditor.DrawingAreaComponents
                 if (selectedTiles.Count == drawingAreaTiles.Count)
                 {
                     selectedTiles.Clear();
-                    selectedTilesMinimalBoundingBox = Rectangle.Empty;
+                    selectedTilesMinimalBoundingBox = RectangleF.Empty;
                 }
                 else
                 {
@@ -239,7 +244,7 @@ namespace TilemapEditor.DrawingAreaComponents
                 if (tile.screenBounds.Bottom > bottomRight.Y)
                     bottomRight.Y = tile.screenBounds.Bottom;
             }
-            selectedTilesMinimalBoundingBox = new Rectangle(topLeft.ToPoint(), (bottomRight - topLeft).ToPoint());
+            selectedTilesMinimalBoundingBox = new RectangleF(topLeft, (bottomRight - topLeft));
         }
 
         #endregion

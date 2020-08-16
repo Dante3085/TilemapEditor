@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using C3.MonoGame;
+using MonoGame.Extended;
 
 namespace TilemapEditor.DrawingAreaComponents
 {
@@ -62,7 +63,7 @@ namespace TilemapEditor.DrawingAreaComponents
             return snappingVector;
         }
 
-        public void Draw(SpriteBatch spriteBatch, Rectangle bounds, float cameraZoom, Vector2 cameraPosition)
+        public void Draw(SpriteBatch spriteBatch, RectangleF bounds, float cameraZoom, Vector2 cameraPosition)
         {
             if (!gridActivated)
                 return;

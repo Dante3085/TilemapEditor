@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MonoGame.Extended;
 
 namespace TilemapEditor.DrawingAreaComponents
 {
@@ -41,7 +42,7 @@ namespace TilemapEditor.DrawingAreaComponents
             bool selectionIsBeingScaled,
             List<Tile> selectedTiles,
             List<Tile> tiles,
-            ref Rectangle selectedTilesMinimalBoundingBox,
+            ref RectangleF selectedTilesMinimalBoundingBox,
             Vector2 currentMousePosition,
             Vector2 mouseTravel,
             GameTime gameTime,
@@ -66,7 +67,7 @@ namespace TilemapEditor.DrawingAreaComponents
             bool selectionBoxHasStartPoint,
             bool selectionIsBeingScaled,
             List<Tile> selectedTiles,
-            ref Rectangle selectedTilesMinimalBoundingBox,
+            ref RectangleF selectedTilesMinimalBoundingBox,
             Vector2 currentMousePosition,
             Vector2 mouseTravel,
             Grid grid
@@ -89,38 +90,37 @@ namespace TilemapEditor.DrawingAreaComponents
                 movingSelectedTilesWithMouse = false;
             }
 
-            if (movingSelectedTilesWithMouse &&
-                mouseTravel != Vector2.Zero)
+            if (movingSelectedTilesWithMouse /*&& mouseTravel != Vector2.Zero*/)
             {
                 foreach (Tile tile in selectedTiles)
                 {
-                    tile.screenBounds.Location += mouseTravel.ToPoint();
+                    tile.screenBounds.Position += mouseTravel;
                 }
-                selectedTilesMinimalBoundingBox.Location += mouseTravel.ToPoint();
+                selectedTilesMinimalBoundingBox.Position += mouseTravel;
             }
 
             // Grid Snapping
             if (grid.GridActivated && InputManager.OnLeftMouseButtonReleased())
             {
-                Vector2 snappingVector = grid.GetSnappingVectorForGivenPosition(selectedTilesMinimalBoundingBox.Location.ToVector2());
+                Vector2 snappingVector = grid.GetSnappingVectorForGivenPosition(selectedTilesMinimalBoundingBox.Position);
                 Vector2 correctionVector = Vector2.Zero;
 
-                selectedTilesMinimalBoundingBox.Location += snappingVector.ToPoint();
+                selectedTilesMinimalBoundingBox.Position += snappingVector;
 
                 // Correction if movement past DrawingArea bounds.
-                if (selectedTilesMinimalBoundingBox.Location.X < 0)
+                if (selectedTilesMinimalBoundingBox.Position.X < 0)
                 {
-                    correctionVector.X -= selectedTilesMinimalBoundingBox.Location.X;
+                    correctionVector.X -= selectedTilesMinimalBoundingBox.Position.X;
                 }
-                if (selectedTilesMinimalBoundingBox.Location.Y < 0)
+                if (selectedTilesMinimalBoundingBox.Position.Y < 0)
                 {
-                    correctionVector.Y -= selectedTilesMinimalBoundingBox.Location.Y;
+                    correctionVector.Y -= selectedTilesMinimalBoundingBox.Position.Y;
                 }
-                selectedTilesMinimalBoundingBox.Location += correctionVector.ToPoint();
+                selectedTilesMinimalBoundingBox.Position += correctionVector;
 
                 foreach (Tile tile in selectedTiles)
                 {
-                    tile.screenBounds.Location += snappingVector.ToPoint() + correctionVector.ToPoint();
+                    tile.screenBounds.Position += snappingVector + correctionVector;
                 }
             }
         }
@@ -146,7 +146,7 @@ namespace TilemapEditor.DrawingAreaComponents
         private void UpdateMovingSelectedTilesWithKeys
             (
             List<Tile> selectedTiles,
-            ref Rectangle selectedTilesMinimalBoundingBox,
+            ref RectangleF selectedTilesMinimalBoundingBox,
             GameTime gameTime
             )
         {
@@ -158,9 +158,9 @@ namespace TilemapEditor.DrawingAreaComponents
                 // Move every Tile and the minimumBoundingBox one step to the right.
                 foreach (Tile tile in selectedTiles)
                 {
-                    tile.screenBounds.Location += new Point(1, 0);
+                    tile.screenBounds.Position += new Vector2(1, 0);
                 }
-                selectedTilesMinimalBoundingBox.Location += new Point(1, 0);
+                selectedTilesMinimalBoundingBox.Position += new Vector2(1, 0);
             }
             if (InputManager.IsKeyPressed(Keys.Right))
             {
@@ -171,9 +171,9 @@ namespace TilemapEditor.DrawingAreaComponents
                     // Move every Tile and the minimumBoundingBox one step to the right.
                     foreach (Tile tile in selectedTiles)
                     {
-                        tile.screenBounds.Location += new Point(1, 0);
+                        tile.screenBounds.Position += new Vector2(1, 0);
                     }
-                    selectedTilesMinimalBoundingBox.Location += new Point(1, 0);
+                    selectedTilesMinimalBoundingBox.Position += new Vector2(1, 0);
 
                     rightHoldElapsed *= 0.90f;
                 }
@@ -193,9 +193,9 @@ namespace TilemapEditor.DrawingAreaComponents
                 // Move every Tile and the minimumBoundingBox one step to the left.
                 foreach (Tile tile in selectedTiles)
                 {
-                    tile.screenBounds.Location += new Point(-1, 0);
+                    tile.screenBounds.Position += new Vector2(-1, 0);
                 }
-                selectedTilesMinimalBoundingBox.Location += new Point(-1, 0);
+                selectedTilesMinimalBoundingBox.Position += new Vector2(-1, 0);
             }
             if (InputManager.IsKeyPressed(Keys.Left))
             {
@@ -206,9 +206,9 @@ namespace TilemapEditor.DrawingAreaComponents
                     // Move every Tile and the minimumBoundingBox one step to the left.
                     foreach (Tile tile in selectedTiles)
                     {
-                        tile.screenBounds.Location += new Point(-1, 0);
+                        tile.screenBounds.Position += new Vector2(-1, 0);
                     }
-                    selectedTilesMinimalBoundingBox.Location += new Point(-1, 0);
+                    selectedTilesMinimalBoundingBox.Position += new Vector2(-1, 0);
 
                     leftHoldElapsed *= 0.90f;
                 }
@@ -228,9 +228,9 @@ namespace TilemapEditor.DrawingAreaComponents
                 // Move every Tile and the minimumBoundingBox one step to the top.
                 foreach (Tile tile in selectedTiles)
                 {
-                    tile.screenBounds.Location += new Point(0, -1);
+                    tile.screenBounds.Position += new Vector2(0, -1);
                 }
-                selectedTilesMinimalBoundingBox.Location += new Point(0, -1);
+                selectedTilesMinimalBoundingBox.Position += new Vector2(0, -1);
             }
             if (InputManager.IsKeyPressed(Keys.Up))
             {
@@ -241,9 +241,9 @@ namespace TilemapEditor.DrawingAreaComponents
                     // Move every Tile and the minimumBoundingBox one step to the top.
                     foreach (Tile tile in selectedTiles)
                     {
-                        tile.screenBounds.Location += new Point(0, -1);
+                        tile.screenBounds.Position += new Vector2(0, -1);
                     }
-                    selectedTilesMinimalBoundingBox.Location += new Point(0, -1);
+                    selectedTilesMinimalBoundingBox.Position += new Vector2(0, -1);
 
                     upHoldElapsed *= 0.90f;
                 }
@@ -263,9 +263,9 @@ namespace TilemapEditor.DrawingAreaComponents
                 // Move every Tile and the minimumBoundingBox one step to bottom.
                 foreach (Tile tile in selectedTiles)
                 {
-                    tile.screenBounds.Location += new Point(0, 1);
+                    tile.screenBounds.Position += new Vector2(0, 1);
                 }
-                selectedTilesMinimalBoundingBox.Location += new Point(0, 1);
+                selectedTilesMinimalBoundingBox.Position += new Vector2(0, 1);
             }
             if (InputManager.IsKeyPressed(Keys.Down))
             {
@@ -276,9 +276,9 @@ namespace TilemapEditor.DrawingAreaComponents
                     // Move every Tile and the minimumBoundingBox one step to bottom.
                     foreach (Tile tile in selectedTiles)
                     {
-                        tile.screenBounds.Location += new Point(0, 1);
+                        tile.screenBounds.Position += new Vector2(0, 1);
                     }
-                    selectedTilesMinimalBoundingBox.Location += new Point(0, 1);
+                    selectedTilesMinimalBoundingBox.Position += new Vector2(0, 1);
 
                     downHoldElapsed *= 0.90f;
                 }
@@ -306,7 +306,7 @@ namespace TilemapEditor.DrawingAreaComponents
         {
             foreach (Tile tile in tiles)
             {
-                tile.screenBounds.Location += grid.GetSnappingVectorForGivenPosition(tile.screenBounds.Location.ToVector2()).ToPoint();
+                tile.screenBounds.Position += grid.GetSnappingVectorForGivenPosition(tile.screenBounds.Position);
             }
         }
 
