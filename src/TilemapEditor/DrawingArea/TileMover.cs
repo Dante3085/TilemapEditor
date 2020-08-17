@@ -46,14 +46,15 @@ namespace TilemapEditor.DrawingAreaComponents
             Vector2 currentMousePosition,
             Vector2 mouseTravel,
             GameTime gameTime,
-            Grid grid
+            Grid grid,
+            TileHistory tileHistory
             )
         {
             UpdateMovingSelectedTilesWithMouse(tileSelectionIsVisible, tileSelectionIsHoveredByMouse, selectionBoxHasStartPoint, selectionIsBeingScaled,
-                                               selectedTiles, ref selectedTilesMinimalBoundingBox, currentMousePosition, mouseTravel, grid);
+                                               selectedTiles, ref selectedTilesMinimalBoundingBox, currentMousePosition, mouseTravel, grid, tileHistory);
 
             UpdateMovingSelectedTilesWithKeys(selectedTiles, ref selectedTilesMinimalBoundingBox, gameTime);
-            UpdateSnappingAllTilesToGrid(tiles, grid);
+            UpdateSnappingAllTilesToGrid(tiles, grid, tileHistory);
         }
 
         #endregion
@@ -70,7 +71,8 @@ namespace TilemapEditor.DrawingAreaComponents
             ref RectangleF selectedTilesMinimalBoundingBox,
             Vector2 currentMousePosition,
             Vector2 mouseTravel,
-            Grid grid
+            Grid grid,
+            TileHistory tileHistory
             )
         {
             if (CantMoveSelectedTilesWithMouse(tileSelectionIsVisible, tileSelectionIsHoveredByMouse, selectionBoxHasStartPoint, selectionIsBeingScaled,
@@ -84,6 +86,13 @@ namespace TilemapEditor.DrawingAreaComponents
                 InputManager.OnLeftMouseButtonClicked())
             {
                 movingSelectedTilesWithMouse = true;
+
+                List<Tuple<Tile, Vector2>> oldPositions = new List<Tuple<Tile, Vector2>>();
+                foreach (Tile tile in selectedTiles)
+                {
+                    oldPositions.Add(new Tuple<Tile, Vector2>(tile, tile.screenBounds.Position));
+                }
+                tileHistory.AppendMoveAction(oldPositions);
             }
             else if (InputManager.OnLeftMouseButtonReleased())
             {
@@ -293,21 +302,24 @@ namespace TilemapEditor.DrawingAreaComponents
             }
         }
 
-        private void UpdateSnappingAllTilesToGrid(List<Tile> tiles, Grid grid)
+        private void UpdateSnappingAllTilesToGrid(List<Tile> tiles, Grid grid, TileHistory tileHistory)
         {
             // Snap all Tiles
             if (grid.GridActivated && InputManager.OnKeyCombinationPressed(Keys.LeftControl, Keys.LeftAlt, Keys.S))
             {
-                SnapAllTilesToGrid(tiles, grid);
+                SnapAllTilesToGrid(tiles, grid, tileHistory);
             }
         }
 
-        private void SnapAllTilesToGrid(List<Tile> tiles, Grid grid)
+        private void SnapAllTilesToGrid(List<Tile> tiles, Grid grid, TileHistory tileHistory)
         {
+            List<Tuple<Tile, Vector2>> oldPositions = new List<Tuple<Tile, Vector2>>();
             foreach (Tile tile in tiles)
             {
+                oldPositions.Add(new Tuple<Tile, Vector2>(tile, tile.screenBounds.Position));
                 tile.screenBounds.Position += grid.GetSnappingVectorForGivenPosition(tile.screenBounds.Position);
             }
+            tileHistory.AppendMoveAction(oldPositions);
         }
 
         #endregion

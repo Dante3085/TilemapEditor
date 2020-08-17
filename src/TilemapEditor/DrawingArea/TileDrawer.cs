@@ -39,13 +39,15 @@ namespace TilemapEditor.DrawingAreaComponents
             List<Tile> selectedTiles,
             Vector2 currentMousePosition,
             ref RectangleF selectedTilesMinimalBoundingBox,
-            Grid grid
+            Grid grid,
+            TileHistory tileHistory
             )
         {
-            UpdateTileDrawing(tileSelectionCurrentTile, tileSelectionIsNotHoveredByMouse, tileSelectionIsHidden, tiles, currentMousePosition, grid);
+            UpdateTileDrawing(tileSelectionCurrentTile, tileSelectionIsNotHoveredByMouse, tileSelectionIsHidden, tiles, currentMousePosition, grid,
+                              tileHistory);
 
             UpdateCopyingCuttingDeletingPastingTileSelection(!tileSelectionIsHidden, !tileSelectionIsNotHoveredByMouse, selectedTiles, tiles,
-                                                             ref selectedTilesMinimalBoundingBox, currentMousePosition);
+                                                             ref selectedTilesMinimalBoundingBox, currentMousePosition, tileHistory);
         }
 
         public void Draw
@@ -90,7 +92,8 @@ namespace TilemapEditor.DrawingAreaComponents
             bool tileSelectionIsHidden,
             List<Tile> tiles,
             Vector2 currentMousePosition,
-            Grid grid
+            Grid grid,
+            TileHistory tileHistory
             )
         {
             
@@ -103,7 +106,7 @@ namespace TilemapEditor.DrawingAreaComponents
 
                 if (InputManager.OnLeftMouseButtonClicked())
                 {
-                    DrawTileSelectionCurrentTile(tileSelectionCurrentTile, currentMousePosition, tiles, grid);
+                    DrawTileSelectionCurrentTile(tileSelectionCurrentTile, currentMousePosition, tiles, grid, tileHistory);
                     drawMultipleTilesAtOnce = true;
                 }
                 else if (InputManager.OnLeftMouseButtonReleased())
@@ -118,7 +121,7 @@ namespace TilemapEditor.DrawingAreaComponents
                     if (!tiles[tiles.Count - 1].screenBounds.Intersects(new RectangleF(currentMousePosition, 
                                                                             tileSelectionCurrentTile.screenBounds.Size)))
                     {
-                        DrawTileSelectionCurrentTile(tileSelectionCurrentTile, currentMousePosition, tiles, grid);
+                        DrawTileSelectionCurrentTile(tileSelectionCurrentTile, currentMousePosition, tiles, grid, tileHistory);
                     }
                 }
             }
@@ -128,7 +131,14 @@ namespace TilemapEditor.DrawingAreaComponents
             }
         } 
 
-        private void DrawTileSelectionCurrentTile(Tile tileSelectionCurrentTile, Vector2 currentMousePosition, List<Tile> tiles, Grid grid)
+        private void DrawTileSelectionCurrentTile
+            (
+            Tile tileSelectionCurrentTile, 
+            Vector2 currentMousePosition, 
+            List<Tile> tiles, 
+            Grid grid,
+            TileHistory tileHistory
+            )
         {
             Tile newTile = new Tile(tileSelectionCurrentTile.name, 
                 tileSelectionCurrentTile.textureBounds, new RectangleF(currentMousePosition.ToPoint(), 
@@ -138,6 +148,7 @@ namespace TilemapEditor.DrawingAreaComponents
                 newTile.screenBounds.Position += grid.GetSnappingVectorForGivenPosition(newTile.screenBounds.Position);
             
             tiles.Add(newTile);
+            tileHistory.AppendAddAction(new List<int>() { tiles.Count - 1 });
         }
 
         private void UpdateCopyingCuttingDeletingPastingTileSelection
@@ -147,7 +158,8 @@ namespace TilemapEditor.DrawingAreaComponents
             List<Tile> selectedTiles,
             List<Tile> tiles,
             ref RectangleF selectedTilesMinimalBoundingBox,
-            Vector2 currentMousePosition
+            Vector2 currentMousePosition,
+            TileHistory tileHistory
             )
         {
             if (tileSelectionIsVisible &&
@@ -157,9 +169,9 @@ namespace TilemapEditor.DrawingAreaComponents
             }
 
             UpdateCopyingSelectedTiles(selectedTiles);
-            UpdateCuttingSelectedTiles(tiles, selectedTiles, ref selectedTilesMinimalBoundingBox);
-            UpdateDeletingSelectedTiles(tiles, selectedTiles, ref selectedTilesMinimalBoundingBox);
-            UpdatePastingCopiedOrCuttedTiles(currentMousePosition, tiles);
+            UpdateCuttingSelectedTiles(tiles, selectedTiles, ref selectedTilesMinimalBoundingBox, tileHistory);
+            UpdateDeletingSelectedTiles(tiles, selectedTiles, ref selectedTilesMinimalBoundingBox, tileHistory);
+            UpdatePastingCopiedOrCuttedTiles(currentMousePosition, tiles, tileHistory);
         }
 
         private void UpdateCopyingSelectedTiles(List<Tile> selectedTiles)
@@ -175,13 +187,16 @@ namespace TilemapEditor.DrawingAreaComponents
             (
             List<Tile> tiles,
             List<Tile> selectedTiles,
-            ref RectangleF selectedTilesMinimalBoundingBox
+            ref RectangleF selectedTilesMinimalBoundingBox,
+            TileHistory tileHistory
             )
         {
             if (selectedTiles.Count != 0 && InputManager.OnKeyCombinationPressed(Keys.LeftControl, Keys.X))
             {
                 copyBuffer.Clear();
                 copyBuffer.AddRange(selectedTiles);
+
+                tileHistory.AppendDeleteAction(new List<Tile>(selectedTiles));
 
                 // Remove all Tiles that have been cut from DrawingArea.
                 tiles.RemoveAll((tile) =>
@@ -197,11 +212,14 @@ namespace TilemapEditor.DrawingAreaComponents
             (
             List<Tile> tiles,
             List<Tile> selectedTiles,
-            ref RectangleF selectedTilesMinimalBoundingBox
+            ref RectangleF selectedTilesMinimalBoundingBox,
+            TileHistory tileHistory
             )
         {
             if (selectedTiles.Count != 0 && InputManager.OnKeyPressed(Keys.Delete))
             {
+                tileHistory.AppendDeleteAction(new List<Tile>(selectedTiles));
+
                 tiles.RemoveAll((tile) =>
                 {
                     return selectedTiles.Contains(tile);
@@ -211,13 +229,14 @@ namespace TilemapEditor.DrawingAreaComponents
             }
         }
 
-        private void UpdatePastingCopiedOrCuttedTiles(Vector2 currentMousePosition, List<Tile> tiles)
+        private void UpdatePastingCopiedOrCuttedTiles(Vector2 currentMousePosition, List<Tile> tiles, TileHistory tileHistory)
         {
             if (copyBuffer.Count != 0 && InputManager.OnKeyCombinationPressed(Keys.LeftControl, Keys.V))
             {
                 Vector2 shiftVector = currentMousePosition - new Vector2(copyBuffer[0].screenBounds.Position.X,
                                                                          copyBuffer[0].screenBounds.Position.Y);
 
+                List<int> addedIndices = new List<int>();
                 foreach (Tile tile in copyBuffer)
                 {
                     Vector2 newTilePosition = tile.screenBounds.Position + shiftVector;
@@ -226,7 +245,9 @@ namespace TilemapEditor.DrawingAreaComponents
                         new RectangleF(newTilePosition, tile.screenBounds.Size));
 
                     tiles.Add(newTile);
+                    addedIndices.Add(tiles.Count - 1);
                 }
+                tileHistory.AppendAddAction(addedIndices);
             }
         }
 

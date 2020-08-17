@@ -95,6 +95,17 @@ namespace TilemapEditor.DrawingAreaComponents
             }
         }
 
+        public void ClearSelection()
+        {
+            selectedTiles.Clear();
+            selectedTilesMinimalBoundingBox = RectangleF.Empty;
+        }
+
+        public void UpdatetSelectedTilesMinimalBoundingBox()
+        {
+            CalcSelectionMinimalBoundingBox();
+        }
+
         #endregion
 
         #region PrivateHelperMethods

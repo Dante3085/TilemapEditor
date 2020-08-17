@@ -48,6 +48,7 @@ namespace TilemapEditor
         private TileMover tileMover = new TileMover();
         private TileDrawer tileDrawer = new TileDrawer();
         private Grid grid;
+        private TileHistory tileHistory = new TileHistory(50);
 
         private Vector2 currentMousePosition = Vector2.Zero;
         private Vector2 mouseTravel = Vector2.Zero;
@@ -126,12 +127,13 @@ namespace TilemapEditor
                                 tiles, currentMousePosition, gameTime);
 
             tileMover.Update(!tileSelection.Hidden, tileSelection.IsHoveredByMouse, tileSelector.SelectionBoxHasStartPoint, false, tileSelector.SelectedTiles, tiles, 
-                             ref tileSelector.SelectedTilesMinimalBoundingBox, currentMousePosition, mouseTravel, gameTime, grid);
+                             ref tileSelector.SelectedTilesMinimalBoundingBox, currentMousePosition, mouseTravel, gameTime, grid, tileHistory);
 
             tileDrawer.Update(tileSelection.CurrentTile, !tileSelection.IsHoveredByMouse, tileSelection.Hidden, tiles, tileSelector.SelectedTiles, currentMousePosition,
-                              ref tileSelector.SelectedTilesMinimalBoundingBox, grid);
+                              ref tileSelector.SelectedTilesMinimalBoundingBox, grid, tileHistory);
 
             grid.Update();
+            tileHistory.Update(tiles, tileSelector);
         }
 
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch)

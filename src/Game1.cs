@@ -37,6 +37,7 @@ namespace TilemapEditor
             graphicsDeviceManager.IsFullScreen = false;
             graphicsDeviceManager.SynchronizeWithVerticalRetrace = true;
             IsFixedTimeStep = false;
+            Window.AllowUserResizing = true;
 
             tilemapEditor = new TilemapEditor();
             fpsCounter = new FpsCounter(Vector2.One);
