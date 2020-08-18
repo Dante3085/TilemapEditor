@@ -54,7 +54,7 @@ namespace TilemapEditor.DrawingAreaComponents
                 selectedTiles.Clear();
                 foreach (Tile tile in tiles)
                 {
-                    if (Utility.Contains(selectionBox, tile.screenBounds))
+                    if (selectionBox.Intersects(tile.screenBounds))
                     {
                         selectedTiles.Add(tile);
 
