@@ -2,9 +2,6 @@
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using C3.MonoGame;
 using MonoGame.Extended;
 
@@ -17,6 +14,7 @@ namespace TilemapEditor.DrawingAreaComponents
     {
         private Vector2 selectionBoxStartPoint = Vector2.Zero;
         private RectangleF selectionBox = RectangleF.Empty;
+        private List<RectangleF> possibleSelectionMarkers = new List<RectangleF>();
 
         public bool SelectionBoxHasStartPoint
         {
@@ -29,18 +27,23 @@ namespace TilemapEditor.DrawingAreaComponents
             
         }
 
+        #region PublicInterface
+
         public void Update(GameTime gameTime, List<Tile> tiles, List<Tile> selectedTiles, Vector2 currentMousePosition, 
                            ref RectangleF minimalBoundingBox)
         {
             if (InputManager.OnRightMouseButtonClicked())
             {
+                selectionBox = RectangleF.Empty;
                 selectionBoxStartPoint = currentMousePosition;
                 SelectionBoxHasStartPoint = true;
                 minimalBoundingBox = RectangleF.Empty;
+                
             }
             else if (InputManager.OnRightMouseButtonReleased())
             {
                 SelectionBoxHasStartPoint = false;
+                possibleSelectionMarkers.Clear();
 
                 // Find out which Tiles were selected.
                 // We want to know the minimumBoundingBox of all selected Tiles as well.
@@ -73,12 +76,11 @@ namespace TilemapEditor.DrawingAreaComponents
                 }
                 minimalBoundingBox = new RectangleF(topLeft, (bottomRight - topLeft));
             }
-            if (SelectionBoxHasStartPoint && InputManager.IsRightMouseButtonDown())
+            if (InputManager.HasMouseMoved &&
+                SelectionBoxHasStartPoint && InputManager.IsRightMouseButtonDown())
             {
-                selectionBox.Width = (int)Math.Abs(currentMousePosition.X - selectionBoxStartPoint.X);
-                selectionBox.Height = (int)Math.Abs(currentMousePosition.Y - selectionBoxStartPoint.Y);
-                selectionBox.X = (int)Math.Min(selectionBoxStartPoint.X, currentMousePosition.X);
-                selectionBox.Y = (int)Math.Min(selectionBoxStartPoint.Y, currentMousePosition.Y);
+                RecalculateSelectionBox(currentMousePosition);
+                DeterminePossibleSelectionMarkers(tiles);
             }
         }
 
@@ -86,11 +88,55 @@ namespace TilemapEditor.DrawingAreaComponents
         {
             if (SelectionBoxHasStartPoint)
             {
-                Color color = Color.Blue;
-                color.A = 15;
-
-                Primitives2D.FillRectangle(spriteBatch, selectionBox.ToRectangle(), color);
+                DrawPossibleSelectionMarkers(spriteBatch);
+                DrawSelectionBox(spriteBatch);
             }
         }
+
+        #endregion
+
+        #region PrivateHelperMethods
+
+        private void DrawSelectionBox(SpriteBatch spriteBatch)
+        {
+            Color color = Color.Blue;
+            color.A = 15;
+            Primitives2D.FillRectangle(spriteBatch, selectionBox.ToRectangle(), color);
+        }
+
+        private void DrawPossibleSelectionMarkers(SpriteBatch spriteBatch)
+        {
+            Color color = Color.Red;
+            color.A = 90;
+            foreach (RectangleF marker in possibleSelectionMarkers)
+            {
+                spriteBatch.FillRectangle(marker.ToRectangle(), color);
+            }
+        }
+
+        private void RecalculateSelectionBox(Vector2 currentMousePosition)
+        {
+            selectionBox.Width = (int)Math.Abs(currentMousePosition.X - selectionBoxStartPoint.X);
+            selectionBox.Height = (int)Math.Abs(currentMousePosition.Y - selectionBoxStartPoint.Y);
+            selectionBox.X = (int)Math.Min(selectionBoxStartPoint.X, currentMousePosition.X);
+            selectionBox.Y = (int)Math.Min(selectionBoxStartPoint.Y, currentMousePosition.Y);
+        }
+
+        private void DeterminePossibleSelectionMarkers(List<Tile> tiles)
+        {
+            possibleSelectionMarkers.Clear();
+            foreach (Tile tile in tiles)
+            {
+                if (selectionBox.Intersects(tile.screenBounds))
+                {
+                    RectangleF marker = tile.screenBounds;
+                    marker.Inflate(-(tile.screenBounds.Width/4), -(tile.screenBounds.Height / 4));
+
+                    possibleSelectionMarkers.Add(marker);
+                }
+            }
+        }
+
+        #endregion
     }
 }
