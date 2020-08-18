@@ -13,24 +13,30 @@
 
 #---------------------------------- Content ---------------------------------#
 
+#begin configFiles/tilemaps/54000Tiles.tm.json
+/copy:configFiles/tilemaps/54000Tiles.tm.json
+
+#begin configFiles/tilemaps/dasdas.tm.json
+/copy:configFiles/tilemaps/dasdas.tm.json
+
+#begin configFiles/tilemaps/faces.tm.json
+/copy:configFiles/tilemaps/faces.tm.json
+
+#begin configFiles/tilemaps/myTilemap.tm.json
+/copy:configFiles/tilemaps/myTilemap.tm.json
+
+#begin configFiles/tilesets/testAutoTilesFile.ts.json
+/copy:configFiles/tilesets/testAutoTilesFile.ts.json
+
+#begin configFiles/tilesets/testNormalTilesFile.ts.json
+/copy:configFiles/tilesets/testNormalTilesFile.ts.json
+
 #begin fonts/font_default.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor
 /processorParam:PremultiplyAlpha=True
 /processorParam:TextureFormat=Compressed
 /build:fonts/font_default.spritefont
-
-#begin tilesets/overworld_tileset_grass.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:tilesets/overworld_tileset_grass.png
 
 #begin tilesets/overworld_tileset_grass.png
 /importer:TextureImporter
