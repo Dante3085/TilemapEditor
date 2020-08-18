@@ -167,7 +167,7 @@ namespace TilemapEditor
             fontSize = font.MeasureString(infoText);
 
             drawingArea = new DrawingArea(viewport.Bounds, tileSelection);
-            tileSelection.ReadTilesFromFile("configFiles/tilesets/testAutoTilesFile.ts.json",
+            tileSelection.ReadTilesFromFile("Content/configFiles/tilesets/testAutoTilesFile.ts.json",
                                              content);
 
             tileSelection.LoadContent(content);
