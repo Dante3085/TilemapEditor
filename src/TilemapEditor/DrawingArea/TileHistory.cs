@@ -24,13 +24,18 @@ namespace TilemapEditor.DrawingAreaComponents
     {
         private int maxHistoryDepth;
 
-        private List<TileAction> tileActionHistory = new List<TileAction>();
+        private List<TileAction> undoTileActionHistory = new List<TileAction>();
+        private List<TileAction> redoTileActionHistory = new List<TileAction>();
 
-        private List<List<int>> addHistory = new List<List<int>>();
+        private List<List<int>> undoAddHistory = new List<List<int>>();
+        private List<List<Tile>> redoAddHistory = new List<List<Tile>>();
 
-        private List<List<Tile>> deleteHistory = new List<List<Tile>>();
+        private List<List<Tile>> undoDeleteHistory = new List<List<Tile>>();
+        private List<List<int>> redoDeleteHistory = new List<List<int>>();
 
-        private List<List<Tuple<Tile, Vector2>>> positionHistory = new List<List<Tuple<Tile, Vector2>>>();
+        private List<List<Tuple<Tile, Vector2>>> undoPositionHistory = new List<List<Tuple<Tile, Vector2>>>();
+        private List<List<Tuple<Tile, Vector2>>> redoPositionHistory = new List<List<Tuple<Tile, Vector2>>>();
+
 
         public TileHistory(int maxHistoryDepth)
         {
@@ -39,102 +44,186 @@ namespace TilemapEditor.DrawingAreaComponents
 
         #region publicIntereface
 
-        public void Update(List<Tile> drawingAreaTiles, TileSelector tileSelector)
+        public void Update(List<Tile> drawingAreaTiles)
         {
-            if (tileActionHistory.Count > 0 &&
-                InputManager.OnKeyCombinationPressed(Keys.LeftControl, Keys.Z))
-            {
-                switch(tileActionHistory[tileActionHistory.Count - 1])
-                {
-                    case TileAction.ADD_TILES:
-                        {
-                            for (int i = addHistory[addHistory.Count-1].Count-1; i >= 0; --i)
-                            {
-                                drawingAreaTiles.RemoveAt(addHistory[addHistory.Count-1][i]);
-                            }
+            UpdateUndoingLastTileAction(drawingAreaTiles);
+            UpdateRedoingLastTileAction(drawingAreaTiles);
 
-                            addHistory.RemoveAt(addHistory.Count - 1);
-                            tileActionHistory.RemoveAt(tileActionHistory.Count - 1);
-                            break;
-                        }
-
-                    case TileAction.DELETE_TILES:
-                        {
-                            drawingAreaTiles.AddRange(deleteHistory[deleteHistory.Count - 1]);
-                            deleteHistory.RemoveAt(deleteHistory.Count - 1);
-                            tileActionHistory.RemoveAt(tileActionHistory.Count - 1);
-                            break;
-                        }
-
-                    case TileAction.MOVE_TILES:
-                        {
-                            foreach (Tuple<Tile, Vector2> oldPosition in positionHistory[positionHistory.Count - 1])
-                            {
-                                oldPosition.Item1.screenBounds.Position = oldPosition.Item2;
-                            }
-
-                            positionHistory.RemoveAt(positionHistory.Count - 1);
-                            tileActionHistory.RemoveAt(tileActionHistory.Count - 1);
-                            break;
-                        }
-                }
-            }
         }
         
         public void AppendAddAction(List<int> addedTileIndices)
         {
             CheckMaxHistoryDepth();
 
-            addHistory.Add(addedTileIndices);
-            tileActionHistory.Add(TileAction.ADD_TILES);
+            undoAddHistory.Add(addedTileIndices);
+            undoTileActionHistory.Add(TileAction.ADD_TILES);
         }
 
         public void AppendDeleteAction(List<Tile> deletedTiles)
         {
             CheckMaxHistoryDepth();
 
-            deleteHistory.Add(deletedTiles);
-            tileActionHistory.Add(TileAction.DELETE_TILES);
+            undoDeleteHistory.Add(deletedTiles);
+            undoTileActionHistory.Add(TileAction.DELETE_TILES);
         }
 
         public void AppendMoveAction(List<Tuple<Tile, Vector2>> oldPositions)
         {
             CheckMaxHistoryDepth();
 
-            positionHistory.Add(oldPositions);
-            tileActionHistory.Add(TileAction.MOVE_TILES);
+            undoPositionHistory.Add(oldPositions);
+            undoTileActionHistory.Add(TileAction.MOVE_TILES);
         }
 
         #endregion
 
         #region PrivateHelperMethods
 
-        private void CheckMaxHistoryDepth()
+        private void UpdateUndoingLastTileAction(List<Tile> drawingAreaTiles)
         {
-            if (tileActionHistory.Count == maxHistoryDepth)
+            if (undoTileActionHistory.Count > 0 &&
+                InputManager.OnKeyCombinationPressed(Keys.LeftControl, Keys.Z))
             {
-                // Remove oldest TileAction and it's associated history data.
-                switch (tileActionHistory[0])
+                switch (undoTileActionHistory.Last())
                 {
                     case TileAction.ADD_TILES:
                         {
-                            addHistory.RemoveAt(0);
+                            List<Tile> tilesForRedo = new List<Tile>();
+                            for (int i = undoAddHistory.Last().Count - 1; i >= 0; --i)
+                            {
+                                tilesForRedo.Add(drawingAreaTiles[undoAddHistory.Last()[i]]);
+                                drawingAreaTiles.RemoveAt(undoAddHistory.Last()[i]);
+                            }
+                            redoAddHistory.Add(tilesForRedo);
+                            redoTileActionHistory.Add(TileAction.ADD_TILES);
+
+                            undoAddHistory.RemoveAt(undoAddHistory.Count - 1);
+                            undoTileActionHistory.RemoveAt(undoTileActionHistory.Count - 1);
                             break;
                         }
 
                     case TileAction.DELETE_TILES:
                         {
-                            deleteHistory.RemoveAt(0);
+                            redoDeleteHistory.Add(new List<int>());
+                            for (int i = 0; i < undoDeleteHistory.Last().Count; ++i)
+                            {
+                                redoDeleteHistory.Last().Add(i + drawingAreaTiles.Count);
+                            }
+                            redoTileActionHistory.Add(TileAction.DELETE_TILES);
+
+                            drawingAreaTiles.AddRange(undoDeleteHistory.Last());
+
+                            undoDeleteHistory.RemoveAt(undoDeleteHistory.Count - 1);
+                            undoTileActionHistory.RemoveAt(undoTileActionHistory.Count - 1);
                             break;
                         }
 
                     case TileAction.MOVE_TILES:
                         {
-                            positionHistory.RemoveAt(0);
+                            redoPositionHistory.Add(new List<Tuple<Tile, Vector2>>());
+                            foreach (Tuple<Tile, Vector2> oldPosition in undoPositionHistory.Last())
+                            {
+                                redoPositionHistory.Last().Add(new Tuple<Tile, Vector2>(oldPosition.Item1, oldPosition.Item1.screenBounds.Position));
+                                oldPosition.Item1.screenBounds.Position = oldPosition.Item2;
+                            }
+                            redoTileActionHistory.Add(TileAction.MOVE_TILES);
+
+                            undoPositionHistory.RemoveAt(undoPositionHistory.Count - 1);
+                            undoTileActionHistory.RemoveAt(undoTileActionHistory.Count - 1);
                             break;
                         }
                 }
-                tileActionHistory.RemoveAt(0);
+            }
+        }
+
+        private void UpdateRedoingLastTileAction(List<Tile> drawingAreaTiles)
+        {
+            if (redoTileActionHistory.Count > 0 &&
+                InputManager.OnKeyCombinationPressed(Keys.LeftControl, Keys.Y))
+            {
+                switch (redoTileActionHistory[redoTileActionHistory.Count - 1])
+                {
+                    case TileAction.ADD_TILES:
+                        {
+                            undoAddHistory.Add(new List<int>());
+                            for (int i = redoAddHistory.Last().Count - 1; i >= 0; --i)
+                            {
+                                drawingAreaTiles.Add(redoAddHistory.Last()[i]);
+                                undoAddHistory.Last().Add(drawingAreaTiles.Count - 1);
+                            }
+
+                            undoTileActionHistory.Add(TileAction.ADD_TILES);
+
+                            redoTileActionHistory.RemoveAt(redoTileActionHistory.Count - 1);
+                            redoAddHistory.RemoveAt(redoAddHistory.Count - 1);
+
+                            break;
+                        }
+
+                    case TileAction.DELETE_TILES:
+                        {
+                            undoDeleteHistory.Add(new List<Tile>());
+                            for (int i = redoDeleteHistory.Last().Count-1; i >= 0; --i)
+                            {
+                                undoDeleteHistory.Last().Add(drawingAreaTiles[i]);
+                                drawingAreaTiles.RemoveAt(i);
+                            }
+
+                            undoTileActionHistory.Add(TileAction.DELETE_TILES);
+
+                            redoTileActionHistory.RemoveAt(redoTileActionHistory.Count - 1);
+                            redoDeleteHistory.RemoveAt(redoDeleteHistory.Count - 1);
+
+                            break;
+                        }
+
+                    case TileAction.MOVE_TILES:
+                        {
+                            // TODO: Set positions for all Tiles that have been moved by last undo
+                            undoPositionHistory.Add(new List<Tuple<Tile, Vector2>>());
+                            foreach (Tuple<Tile, Vector2> oldPosition in redoPositionHistory.Last())
+                            {
+                                undoPositionHistory.Last().Add(new Tuple<Tile, Vector2>(oldPosition.Item1, oldPosition.Item1.screenBounds.Position));
+                                oldPosition.Item1.screenBounds.Position = oldPosition.Item2;
+                            }
+
+                            undoTileActionHistory.Add(TileAction.MOVE_TILES);
+
+                            redoTileActionHistory.RemoveAt(redoTileActionHistory.Count - 1);
+                            redoPositionHistory.RemoveAt(redoPositionHistory.Count - 1);
+
+                            break;
+                        }
+                }
+            }
+        }
+
+        private void CheckMaxHistoryDepth()
+        {
+            if (undoTileActionHistory.Count == maxHistoryDepth)
+            {
+                // Remove oldest TileAction and it's associated history data.
+                switch (undoTileActionHistory[0])
+                {
+                    case TileAction.ADD_TILES:
+                        {
+                            undoAddHistory.RemoveAt(0);
+                            break;
+                        }
+
+                    case TileAction.DELETE_TILES:
+                        {
+                            undoDeleteHistory.RemoveAt(0);
+                            break;
+                        }
+
+                    case TileAction.MOVE_TILES:
+                        {
+                            undoPositionHistory.RemoveAt(0);
+                            break;
+                        }
+                }
+                undoTileActionHistory.RemoveAt(0);
             }
         }
 
