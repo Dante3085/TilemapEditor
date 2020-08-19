@@ -1,0 +1,7 @@
+{
+    "TILESET": "tilesets/overworld_tileset_grass",
+    "TILES":
+    {
+        "Grass_0": [0, 0, 16, 16]
+    }
+}
