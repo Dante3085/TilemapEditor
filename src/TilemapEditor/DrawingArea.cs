@@ -133,7 +133,7 @@ namespace TilemapEditor
                               ref tileSelector.SelectedTilesMinimalBoundingBox, grid, tileHistory);
 
             grid.Update();
-            tileHistory.Update(tiles, tileSelector);
+            tileHistory.Update(tiles);
         }
 
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch)

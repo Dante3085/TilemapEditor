@@ -2,8 +2,6 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-using TilemapEditor;
-
 namespace TilemapEditor
 {
     /// <summary>
