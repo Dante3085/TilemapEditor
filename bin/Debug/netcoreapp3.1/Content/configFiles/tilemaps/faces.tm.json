@@ -1,0 +1,3320 @@
+{
+  "TILESET": "tilesets/HOW_TO_GET_TILESET_NAME_?",
+  "TILES": {
+    "TILE_1": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        1419,
+        478,
+        64,
+        64
+      ]
+    },
+    "TILE_2": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        1416,
+        544,
+        64,
+        64
+      ]
+    },
+    "TILE_3": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        1410,
+        622,
+        64,
+        64
+      ]
+    },
+    "TILE_4": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        1407,
+        701,
+        64,
+        64
+      ]
+    },
+    "TILE_5": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        1399,
+        785,
+        64,
+        64
+      ]
+    },
+    "TILE_6": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        1393,
+        854,
+        64,
+        64
+      ]
+    },
+    "TILE_7": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        1387,
+        924,
+        64,
+        64
+      ]
+    },
+    "TILE_8": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        1390,
+        1011,
+        64,
+        64
+      ]
+    },
+    "TILE_9": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        1405,
+        1080,
+        64,
+        64
+      ]
+    },
+    "TILE_10": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        1416,
+        1155,
+        64,
+        64
+      ]
+    },
+    "TILE_11": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        1425,
+        1222,
+        64,
+        64
+      ]
+    },
+    "TILE_12": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        1416,
+        454,
+        64,
+        64
+      ]
+    },
+    "TILE_13": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        1483,
+        454,
+        64,
+        64
+      ]
+    },
+    "TILE_14": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        1561,
+        457,
+        64,
+        64
+      ]
+    },
+    "TILE_15": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        1648,
+        460,
+        64,
+        64
+      ]
+    },
+    "TILE_16": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        1717,
+        463,
+        64,
+        64
+      ]
+    },
+    "TILE_17": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        1787,
+        463,
+        64,
+        64
+      ]
+    },
+    "TILE_18": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        1857,
+        463,
+        64,
+        64
+      ]
+    },
+    "TILE_19": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        1932,
+        463,
+        64,
+        64
+      ]
+    },
+    "TILE_20": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        2010,
+        463,
+        64,
+        64
+      ]
+    },
+    "TILE_21": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        2088,
+        463,
+        64,
+        64
+      ]
+    },
+    "TILE_22": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        2158,
+        463,
+        64,
+        64
+      ]
+    },
+    "TILE_23": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        2222,
+        460,
+        64,
+        64
+      ]
+    },
+    "TILE_24": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        2311,
+        457,
+        64,
+        64
+      ]
+    },
+    "TILE_25": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        2395,
+        457,
+        64,
+        64
+      ]
+    },
+    "TILE_26": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        2459,
+        454,
+        64,
+        64
+      ]
+    },
+    "TILE_27": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        2523,
+        486,
+        64,
+        64
+      ]
+    },
+    "TILE_28": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        2532,
+        564,
+        64,
+        64
+      ]
+    },
+    "TILE_29": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        2540,
+        646,
+        64,
+        64
+      ]
+    },
+    "TILE_30": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        2546,
+        715,
+        64,
+        64
+      ]
+    },
+    "TILE_31": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        2549,
+        790,
+        64,
+        64
+      ]
+    },
+    "TILE_32": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        2549,
+        866,
+        64,
+        64
+      ]
+    },
+    "TILE_33": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        2549,
+        941,
+        64,
+        64
+      ]
+    },
+    "TILE_34": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        2549,
+        1011,
+        64,
+        64
+      ]
+    },
+    "TILE_35": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        2543,
+        1083,
+        64,
+        64
+      ]
+    },
+    "TILE_36": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        2540,
+        1147,
+        64,
+        64
+      ]
+    },
+    "TILE_37": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        2540,
+        1213,
+        64,
+        64
+      ]
+    },
+    "TILE_38": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        2540,
+        1283,
+        64,
+        64
+      ]
+    },
+    "TILE_39": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        1431,
+        1355,
+        64,
+        64
+      ]
+    },
+    "TILE_40": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        1497,
+        1341,
+        64,
+        64
+      ]
+    },
+    "TILE_41": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        1578,
+        1332,
+        64,
+        64
+      ]
+    },
+    "TILE_42": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        1671,
+        1326,
+        64,
+        64
+      ]
+    },
+    "TILE_43": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        1744,
+        1323,
+        64,
+        64
+      ]
+    },
+    "TILE_44": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        1825,
+        1323,
+        64,
+        64
+      ]
+    },
+    "TILE_45": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        1914,
+        1323,
+        64,
+        64
+      ]
+    },
+    "TILE_46": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        2004,
+        1323,
+        64,
+        64
+      ]
+    },
+    "TILE_47": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        2088,
+        1323,
+        64,
+        64
+      ]
+    },
+    "TILE_48": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        2167,
+        1323,
+        64,
+        64
+      ]
+    },
+    "TILE_49": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        2239,
+        1323,
+        64,
+        64
+      ]
+    },
+    "TILE_50": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        2308,
+        1323,
+        64,
+        64
+      ]
+    },
+    "TILE_51": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        2372,
+        1323,
+        64,
+        64
+      ]
+    },
+    "TILE_52": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        2462,
+        1321,
+        64,
+        64
+      ]
+    },
+    "TILE_53": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        2543,
+        1321,
+        64,
+        64
+      ]
+    },
+    "TILE_54": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        2613,
+        1321,
+        64,
+        64
+      ]
+    },
+    "TILE_55": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        1587,
+        686,
+        64,
+        64
+      ]
+    },
+    "TILE_56": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        1665,
+        695,
+        64,
+        64
+      ]
+    },
+    "TILE_57": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        1746,
+        701,
+        64,
+        64
+      ]
+    },
+    "TILE_58": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        1830,
+        701,
+        64,
+        64
+      ]
+    },
+    "TILE_59": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        1920,
+        698,
+        64,
+        64
+      ]
+    },
+    "TILE_60": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        2143,
+        666,
+        64,
+        64
+      ]
+    },
+    "TILE_61": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        2216,
+        669,
+        64,
+        64
+      ]
+    },
+    "TILE_62": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        2285,
+        669,
+        64,
+        64
+      ]
+    },
+    "TILE_63": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        2355,
+        669,
+        64,
+        64
+      ]
+    },
+    "TILE_64": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        1883,
+        1037,
+        64,
+        64
+      ]
+    },
+    "TILE_65": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        1967,
+        1042,
+        64,
+        64
+      ]
+    },
+    "TILE_66": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        2036,
+        1042,
+        64,
+        64
+      ]
+    },
+    "TILE_67": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        2103,
+        1034,
+        64,
+        64
+      ]
+    },
+    "TILE_68": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        3404,
+        493,
+        64,
+        64
+      ]
+    },
+    "TILE_69": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        3340,
+        548,
+        64,
+        64
+      ]
+    },
+    "TILE_70": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        3293,
+        629,
+        64,
+        64
+      ]
+    },
+    "TILE_71": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        3251,
+        722,
+        64,
+        64
+      ]
+    },
+    "TILE_72": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        3217,
+        790,
+        64,
+        64
+      ]
+    },
+    "TILE_73": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        3191,
+        858,
+        64,
+        64
+      ]
+    },
+    "TILE_74": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        3170,
+        935,
+        64,
+        64
+      ]
+    },
+    "TILE_75": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        3157,
+        1020,
+        64,
+        64
+      ]
+    },
+    "TILE_76": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        3145,
+        1113,
+        64,
+        64
+      ]
+    },
+    "TILE_77": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        3140,
+        1211,
+        64,
+        64
+      ]
+    },
+    "TILE_78": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        3140,
+        1309,
+        64,
+        64
+      ]
+    },
+    "TILE_79": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        3162,
+        1402,
+        64,
+        64
+      ]
+    },
+    "TILE_80": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        3187,
+        1491,
+        64,
+        64
+      ]
+    },
+    "TILE_81": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        3221,
+        1598,
+        64,
+        64
+      ]
+    },
+    "TILE_82": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        3259,
+        1695,
+        64,
+        64
+      ]
+    },
+    "TILE_83": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        3293,
+        1789,
+        64,
+        64
+      ]
+    },
+    "TILE_84": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        3332,
+        1887,
+        64,
+        64
+      ]
+    },
+    "TILE_85": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        3370,
+        1984,
+        64,
+        64
+      ]
+    },
+    "TILE_86": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        3404,
+        2078,
+        64,
+        64
+      ]
+    },
+    "TILE_87": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        3429,
+        2154,
+        64,
+        64
+      ]
+    },
+    "TILE_88": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        3455,
+        2222,
+        64,
+        64
+      ]
+    },
+    "TILE_89": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        4534,
+        561,
+        64,
+        64
+      ]
+    },
+    "TILE_90": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        4590,
+        641,
+        64,
+        64
+      ]
+    },
+    "TILE_91": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        4641,
+        714,
+        64,
+        64
+      ]
+    },
+    "TILE_92": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        4670,
+        803,
+        64,
+        64
+      ]
+    },
+    "TILE_93": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        4692,
+        896,
+        64,
+        64
+      ]
+    },
+    "TILE_94": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        4704,
+        969,
+        64,
+        64
+      ]
+    },
+    "TILE_95": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        4709,
+        1054,
+        64,
+        64
+      ]
+    },
+    "TILE_96": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        4709,
+        1134,
+        64,
+        64
+      ]
+    },
+    "TILE_97": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        4700,
+        1215,
+        64,
+        64
+      ]
+    },
+    "TILE_98": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        4679,
+        1296,
+        64,
+        64
+      ]
+    },
+    "TILE_99": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        4653,
+        1381,
+        64,
+        64
+      ]
+    },
+    "TILE_100": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        4628,
+        1462,
+        64,
+        64
+      ]
+    },
+    "TILE_101": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        4598,
+        1534,
+        64,
+        64
+      ]
+    },
+    "TILE_102": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        4560,
+        1602,
+        64,
+        64
+      ]
+    },
+    "TILE_103": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        4500,
+        1691,
+        64,
+        64
+      ]
+    },
+    "TILE_104": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        4449,
+        1755,
+        64,
+        64
+      ]
+    },
+    "TILE_105": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        4398,
+        1823,
+        64,
+        64
+      ]
+    },
+    "TILE_106": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        4330,
+        1891,
+        64,
+        64
+      ]
+    },
+    "TILE_107": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        4250,
+        1955,
+        64,
+        64
+      ]
+    },
+    "TILE_108": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        4177,
+        1993,
+        64,
+        64
+      ]
+    },
+    "TILE_109": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        4101,
+        2023,
+        64,
+        64
+      ]
+    },
+    "TILE_110": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        4020,
+        2052,
+        64,
+        64
+      ]
+    },
+    "TILE_111": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        3939,
+        2082,
+        64,
+        64
+      ]
+    },
+    "TILE_112": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        3859,
+        2112,
+        64,
+        64
+      ]
+    },
+    "TILE_113": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        3795,
+        2125,
+        64,
+        64
+      ]
+    },
+    "TILE_114": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        3723,
+        2146,
+        64,
+        64
+      ]
+    },
+    "TILE_115": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        3655,
+        2167,
+        64,
+        64
+      ]
+    },
+    "TILE_116": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        3591,
+        2197,
+        64,
+        64
+      ]
+    },
+    "TILE_117": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        3527,
+        2256,
+        64,
+        64
+      ]
+    },
+    "TILE_118": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        3349,
+        1003,
+        64,
+        64
+      ]
+    },
+    "TILE_119": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        3408,
+        939,
+        64,
+        64
+      ]
+    },
+    "TILE_120": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        3480,
+        918,
+        64,
+        64
+      ]
+    },
+    "TILE_121": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        3548,
+        913,
+        64,
+        64
+      ]
+    },
+    "TILE_122": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        3612,
+        922,
+        64,
+        64
+      ]
+    },
+    "TILE_123": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        3680,
+        930,
+        64,
+        64
+      ]
+    },
+    "TILE_124": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        3744,
+        935,
+        64,
+        64
+      ]
+    },
+    "TILE_125": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        3327,
+        1024,
+        64,
+        64
+      ]
+    },
+    "TILE_126": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        3400,
+        1011,
+        64,
+        64
+      ]
+    },
+    "TILE_127": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        3480,
+        1015,
+        64,
+        64
+      ]
+    },
+    "TILE_128": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        3544,
+        1032,
+        64,
+        64
+      ]
+    },
+    "TILE_129": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        3621,
+        1045,
+        64,
+        64
+      ]
+    },
+    "TILE_130": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        3689,
+        1049,
+        64,
+        64
+      ]
+    },
+    "TILE_131": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        3735,
+        981,
+        64,
+        64
+      ]
+    },
+    "TILE_132": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        4139,
+        969,
+        64,
+        64
+      ]
+    },
+    "TILE_133": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        4194,
+        905,
+        64,
+        64
+      ]
+    },
+    "TILE_134": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        4258,
+        871,
+        64,
+        64
+      ]
+    },
+    "TILE_135": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        4330,
+        867,
+        64,
+        64
+      ]
+    },
+    "TILE_136": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        4398,
+        884,
+        64,
+        64
+      ]
+    },
+    "TILE_137": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        4462,
+        956,
+        64,
+        64
+      ]
+    },
+    "TILE_138": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        4526,
+        1015,
+        64,
+        64
+      ]
+    },
+    "TILE_139": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        4594,
+        1015,
+        64,
+        64
+      ]
+    },
+    "TILE_140": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        4135,
+        973,
+        64,
+        64
+      ]
+    },
+    "TILE_141": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        4211,
+        973,
+        64,
+        64
+      ]
+    },
+    "TILE_142": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        4275,
+        994,
+        64,
+        64
+      ]
+    },
+    "TILE_143": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        4352,
+        1020,
+        64,
+        64
+      ]
+    },
+    "TILE_144": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        4432,
+        1049,
+        64,
+        64
+      ]
+    },
+    "TILE_145": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        4496,
+        1066,
+        64,
+        64
+      ]
+    },
+    "TILE_146": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        4573,
+        1066,
+        64,
+        64
+      ]
+    },
+    "TILE_147": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        4641,
+        1032,
+        64,
+        64
+      ]
+    },
+    "TILE_148": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        3952,
+        1202,
+        64,
+        64
+      ]
+    },
+    "TILE_149": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        3880,
+        1270,
+        64,
+        64
+      ]
+    },
+    "TILE_150": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        3812,
+        1326,
+        64,
+        64
+      ]
+    },
+    "TILE_151": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        3740,
+        1385,
+        64,
+        64
+      ]
+    },
+    "TILE_152": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        3676,
+        1449,
+        64,
+        64
+      ]
+    },
+    "TILE_153": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        3765,
+        1496,
+        64,
+        64
+      ]
+    },
+    "TILE_154": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        3829,
+        1500,
+        64,
+        64
+      ]
+    },
+    "TILE_155": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        3910,
+        1500,
+        64,
+        64
+      ]
+    },
+    "TILE_156": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        3986,
+        1500,
+        64,
+        64
+      ]
+    },
+    "TILE_157": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        3578,
+        1738,
+        64,
+        64
+      ]
+    },
+    "TILE_158": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        3510,
+        1789,
+        64,
+        64
+      ]
+    },
+    "TILE_159": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        3459,
+        1857,
+        64,
+        64
+      ]
+    },
+    "TILE_160": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        3502,
+        1789,
+        64,
+        64
+      ]
+    },
+    "TILE_161": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        3574,
+        1806,
+        64,
+        64
+      ]
+    },
+    "TILE_162": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        3638,
+        1827,
+        64,
+        64
+      ]
+    },
+    "TILE_163": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        3706,
+        1831,
+        64,
+        64
+      ]
+    },
+    "TILE_164": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        3778,
+        1827,
+        64,
+        64
+      ]
+    },
+    "TILE_165": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        3867,
+        1806,
+        64,
+        64
+      ]
+    },
+    "TILE_166": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        3956,
+        1789,
+        64,
+        64
+      ]
+    },
+    "TILE_167": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        4033,
+        1768,
+        64,
+        64
+      ]
+    },
+    "TILE_168": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        3366,
+        471,
+        64,
+        64
+      ]
+    },
+    "TILE_169": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        3285,
+        484,
+        64,
+        64
+      ]
+    },
+    "TILE_170": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        3187,
+        527,
+        64,
+        64
+      ]
+    },
+    "TILE_171": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        3115,
+        569,
+        64,
+        64
+      ]
+    },
+    "TILE_172": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        3038,
+        624,
+        64,
+        64
+      ]
+    },
+    "TILE_173": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        2970,
+        697,
+        64,
+        64
+      ]
+    },
+    "TILE_174": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        2902,
+        769,
+        64,
+        64
+      ]
+    },
+    "TILE_175": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        2847,
+        841,
+        64,
+        64
+      ]
+    },
+    "TILE_176": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        2800,
+        913,
+        64,
+        64
+      ]
+    },
+    "TILE_177": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        2766,
+        998,
+        64,
+        64
+      ]
+    },
+    "TILE_178": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        2762,
+        1062,
+        64,
+        64
+      ]
+    },
+    "TILE_179": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        4539,
+        442,
+        64,
+        64
+      ]
+    },
+    "TILE_180": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        4619,
+        488,
+        64,
+        64
+      ]
+    },
+    "TILE_181": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        4700,
+        548,
+        64,
+        64
+      ]
+    },
+    "TILE_182": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        4789,
+        624,
+        64,
+        64
+      ]
+    },
+    "TILE_183": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        4857,
+        709,
+        64,
+        64
+      ]
+    },
+    "TILE_184": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        4900,
+        773,
+        64,
+        64
+      ]
+    },
+    "TILE_185": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        4938,
+        841,
+        64,
+        64
+      ]
+    },
+    "TILE_186": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        4976,
+        913,
+        64,
+        64
+      ]
+    },
+    "TILE_187": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        5010,
+        977,
+        64,
+        64
+      ]
+    },
+    "TILE_188": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        5049,
+        1045,
+        64,
+        64
+      ]
+    },
+    "TILE_189": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        3434,
+        450,
+        64,
+        64
+      ]
+    },
+    "TILE_190": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        3502,
+        471,
+        64,
+        64
+      ]
+    },
+    "TILE_191": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        3582,
+        522,
+        64,
+        64
+      ]
+    },
+    "TILE_192": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        3667,
+        599,
+        64,
+        64
+      ]
+    },
+    "TILE_193": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        3740,
+        658,
+        64,
+        64
+      ]
+    },
+    "TILE_194": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        3808,
+        722,
+        64,
+        64
+      ]
+    },
+    "TILE_195": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        3863,
+        786,
+        64,
+        64
+      ]
+    },
+    "TILE_196": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        3914,
+        862,
+        64,
+        64
+      ]
+    },
+    "TILE_197": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        3939,
+        926,
+        64,
+        64
+      ]
+    },
+    "TILE_198": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        3451,
+        476,
+        64,
+        64
+      ]
+    },
+    "TILE_199": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        3514,
+        548,
+        64,
+        64
+      ]
+    },
+    "TILE_200": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        3574,
+        620,
+        64,
+        64
+      ]
+    },
+    "TILE_201": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        3642,
+        705,
+        64,
+        64
+      ]
+    },
+    "TILE_202": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        3723,
+        790,
+        64,
+        64
+      ]
+    },
+    "TILE_203": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        3799,
+        858,
+        64,
+        64
+      ]
+    },
+    "TILE_204": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        3863,
+        909,
+        64,
+        64
+      ]
+    },
+    "TILE_205": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        3927,
+        935,
+        64,
+        64
+      ]
+    },
+    "TILE_206": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        4381,
+        403,
+        64,
+        64
+      ]
+    },
+    "TILE_207": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        4309,
+        420,
+        64,
+        64
+      ]
+    },
+    "TILE_208": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        4224,
+        442,
+        64,
+        64
+      ]
+    },
+    "TILE_209": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        4152,
+        467,
+        64,
+        64
+      ]
+    },
+    "TILE_210": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        4088,
+        501,
+        64,
+        64
+      ]
+    },
+    "TILE_211": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        4016,
+        548,
+        64,
+        64
+      ]
+    },
+    "TILE_212": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        3948,
+        620,
+        64,
+        64
+      ]
+    },
+    "TILE_213": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        3905,
+        684,
+        64,
+        64
+      ]
+    },
+    "TILE_214": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        4033,
+        790,
+        64,
+        64
+      ]
+    },
+    "TILE_215": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        4046,
+        714,
+        64,
+        64
+      ]
+    },
+    "TILE_216": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        4092,
+        637,
+        64,
+        64
+      ]
+    },
+    "TILE_217": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        4173,
+        565,
+        64,
+        64
+      ]
+    },
+    "TILE_218": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        4267,
+        518,
+        64,
+        64
+      ]
+    },
+    "TILE_219": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        4335,
+        488,
+        64,
+        64
+      ]
+    },
+    "TILE_220": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        4424,
+        459,
+        64,
+        64
+      ]
+    },
+    "TILE_221": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        4492,
+        433,
+        64,
+        64
+      ]
+    }
+  }
+}

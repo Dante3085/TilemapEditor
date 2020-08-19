@@ -1,0 +1,275 @@
+{
+  "TILESET": "tilesets/HOW_TO_GET_TILESET_NAME_?",
+  "TILES": {
+    "TILE_1": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        437,
+        391,
+        64,
+        64
+      ]
+    },
+    "TILE_2": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        485,
+        325,
+        64,
+        64
+      ]
+    },
+    "TILE_3": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        542,
+        260,
+        64,
+        64
+      ]
+    },
+    "TILE_4": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        612,
+        214,
+        64,
+        64
+      ]
+    },
+    "TILE_5": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        676,
+        185,
+        64,
+        64
+      ]
+    },
+    "TILE_6": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        748,
+        181,
+        64,
+        64
+      ]
+    },
+    "TILE_7": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        818,
+        191,
+        64,
+        64
+      ]
+    },
+    "TILE_8": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        888,
+        209,
+        64,
+        64
+      ]
+    },
+    "TILE_9": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        939,
+        278,
+        64,
+        64
+      ]
+    },
+    "TILE_10": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        943,
+        347,
+        64,
+        64
+      ]
+    },
+    "TILE_11": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        931,
+        411,
+        64,
+        64
+      ]
+    },
+    "TILE_12": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        865,
+        450,
+        64,
+        64
+      ]
+    },
+    "TILE_13": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        797,
+        450,
+        64,
+        64
+      ]
+    },
+    "TILE_14": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        724,
+        438,
+        64,
+        64
+      ]
+    },
+    "TILE_15": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        656,
+        436,
+        64,
+        64
+      ]
+    },
+    "TILE_16": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        591,
+        445,
+        64,
+        64
+      ]
+    },
+    "TILE_17": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        525,
+        492,
+        64,
+        64
+      ]
+    },
+    "TILE_18": {
+      "NAME": "auto_tile_33",
+      "TEXTURE_BOUNDS": [
+        32,
+        32,
+        16,
+        16
+      ],
+      "SCREEN_BOUNDS": [
+        539,
+        556,
+        64,
+        64
+      ]
+    }
+  }
+}

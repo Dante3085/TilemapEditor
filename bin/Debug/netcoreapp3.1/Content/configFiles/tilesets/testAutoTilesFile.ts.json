@@ -1,0 +1,8 @@
+{
+    "TILESET": "tilesets/snes_chrono_trigger_castle_transparent_background",
+    "AUTO_TILES":
+    {
+        "TILE_SIZE": [16, 16],
+        "REGION": [16, 16, 500, 500]
+    }
+}
