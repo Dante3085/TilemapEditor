@@ -32,7 +32,7 @@ namespace TilemapEditor.DrawingAreaComponents
         public void Update(GameTime gameTime, List<Tile> tiles, List<Tile> selectedTiles, Vector2 currentMousePosition, 
                            ref RectangleF minimalBoundingBox)
         {
-            if (InputManager.OnRightMouseButtonClicked())
+            if (InputManager.OnRightMouseButtonDown())
             {
                 selectionBox = RectangleF.Empty;
                 selectionBoxStartPoint = currentMousePosition;

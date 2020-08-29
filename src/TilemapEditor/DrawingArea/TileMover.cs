@@ -83,7 +83,7 @@ namespace TilemapEditor.DrawingAreaComponents
 
             // Move selection with Mouse.
             if (selectedTilesMinimalBoundingBox.Contains(currentMousePosition) &&
-                InputManager.OnLeftMouseButtonClicked())
+                InputManager.OnLeftMouseButtonDown())
             {
                 movingSelectedTilesWithMouse = true;
 

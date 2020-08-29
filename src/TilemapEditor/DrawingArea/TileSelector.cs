@@ -196,7 +196,7 @@ namespace TilemapEditor.DrawingAreaComponents
             // One Tile selected.
             if (drawingAreaHoveredTile != null &&
                 !selectedTilesMinimalBoundingBox.Contains(currentMousePosition) &&
-                InputManager.OnLeftMouseButtonClicked())
+                InputManager.OnLeftMouseButtonDown())
             {
                 // If we are clicking the already selected Tile again, just throw it out
                 // of the selection.

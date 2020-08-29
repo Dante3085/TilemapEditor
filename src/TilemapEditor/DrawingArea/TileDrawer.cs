@@ -104,7 +104,7 @@ namespace TilemapEditor.DrawingAreaComponents
             {
                 drawTileSelectionCurrentTileOnMouse = true;
 
-                if (InputManager.OnLeftMouseButtonClicked())
+                if (InputManager.OnLeftMouseButtonDown())
                 {
                     DrawTileSelectionCurrentTile(tileSelectionCurrentTile, currentMousePosition, tiles, grid, tileHistory);
                     drawMultipleTilesAtOnce = true;
