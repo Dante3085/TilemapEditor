@@ -31,6 +31,7 @@ namespace TilemapEditor
         private Texture2D tileSet = null;
         private String tileSetName = String.Empty;
         private List<List<Tile>> tiles = new List<List<Tile>>();
+
         private Tile currentTile = null;
         private Tile tileHoveredByMouse = null;
         private Vector2 tileSpacing;
@@ -42,7 +43,6 @@ namespace TilemapEditor
         private Rectangle tileHoveredByMouseMarker;
         private Rectangle currentTileMarker = Rectangle.Empty;
 
-        private bool moveTileSelection = false;
         private bool movementLocked = false;
 
         private bool hidden = false;
@@ -117,73 +117,24 @@ namespace TilemapEditor
             bounds = new Rectangle(position.ToPoint(), Point.Zero);
         }
 
+        #region PublicInterface
+
         public void Update(GameTime gameTime)
         {
-            // Check for hiding TileSelection.
-            if (InputManager.OnKeyPressed(Keys.H))
-            {
-                hidden = !hidden;
-            }
+            UpdateHiding();
 
             if (hidden)
                 return;
 
             Vector2 currentMousePosition = InputManager.CurrentMousePosition();
 
-            bool breakOuterLoop = false;
             if (bounds.Contains(currentMousePosition))
             {
                 IsHoveredByMouse = true;
 
-                if (InputManager.OnKeyPressed(Keys.M))
-                {
-                    movementLocked = movementLocked ? false : true;
-                    text = "Tile-Selection\nMovementLocked: " + movementLocked.ToString();
-                }
-
-                // Only check for which Tile is hovered by Mouse when
-                // the Mouse is inside the TileSelection's bounds and
-                // it has moved.
-                if (InputManager.HasMouseMoved)
-                {
-                    foreach (List<Tile> rows in tiles)
-                    {
-                        foreach (Tile tile in rows)
-                        {
-                            if (tile.screenBounds.Contains(currentMousePosition))
-                            {
-                                tileHoveredByMouseMarker = tile.screenBounds.ToRectangle();
-                                tileHoveredByMouse = tile;
-
-                                // Break both loops if we found a Tile that the mouse currently hovers.
-                                breakOuterLoop = true;
-                                break;
-                            }
-                        }
-
-                        if (breakOuterLoop)
-                        {
-                            break;
-                        }
-                    }
-                }
-
-                // Check for tileHoveredByMouse becoming the currentTile.
-                if (InputManager.OnLeftMouseButtonClicked())
-                {
-                    currentTileMarker = tileHoveredByMouseMarker;
-                    currentTile = tileHoveredByMouse;
-
-                    // This is for moving the TileSelection with the Mouse.
-                    moveTileSelection = movementLocked ? false : true;
-                }
-
-                // Check for the currentTile being discarded.
-                else if (InputManager.OnRightMouseButtonClicked())
-                {
-                    currentTileMarker = Rectangle.Empty;
-                    currentTile = null;
-                }
+                UpdateLockingMovement();
+                UpdateDetectingHoveredTile(currentMousePosition);
+                UpdateDetectingDiscardingCurrentTile();
             }
             else
             {
@@ -191,23 +142,7 @@ namespace TilemapEditor
                 tileHoveredByMouse = null;
             }
 
-            // Check for moving the TileSelection around.
-            // We do this when the LeftMouseButton was once
-            // down inside the TileSelection's bounds and is 
-            // still down.
-            // We only stop moving the TileSelection if the 
-            // LeftMouseButton is released again.
-            if (!movementLocked && moveTileSelection)
-            {
-                if (InputManager.OnLeftMouseButtonReleased())
-                {
-                    moveTileSelection = false;
-                }
-                else
-                {
-                    Position += currentMousePosition - InputManager.PreviousMousePosition();
-                }
-            }
+            UpdateMovingTileSelection(currentMousePosition);
         }
 
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
@@ -265,6 +200,82 @@ namespace TilemapEditor
             UpdateBounds();
         }
 
+        #endregion
+
+        #region PrivateUpdateHelper
+
+        private void UpdateHiding()
+        {
+            if (InputManager.OnKeyPressed(Keys.H))
+            {
+                hidden = !hidden;
+            }
+        }
+
+        private void UpdateLockingMovement()
+        {
+            if (InputManager.OnKeyPressed(Keys.M))
+            {
+                movementLocked = !movementLocked;
+                text = "Tile-Selection\nMovementLocked: " + movementLocked.ToString();
+            }
+        }
+
+        private void UpdateDetectingDiscardingCurrentTile()
+        {
+            // Detect currentTile
+            if (InputManager.OnLeftMouseButtonDown())
+            {
+                currentTileMarker = tileHoveredByMouseMarker;
+                currentTile = tileHoveredByMouse;
+            }
+
+            // Discard currentTile
+            else if (InputManager.OnRightMouseButtonDown())
+            {
+                currentTileMarker = Rectangle.Empty;
+                currentTile = null;
+            }
+        }
+
+        private void UpdateDetectingHoveredTile(Vector2 currentMousePosition)
+        {
+            if (InputManager.HasMouseMoved)
+            {
+                bool breakOuterLoop = false;
+                foreach (List<Tile> rows in tiles)
+                {
+                    foreach (Tile tile in rows)
+                    {
+                        if (tile.screenBounds.Contains(currentMousePosition))
+                        {
+                            tileHoveredByMouseMarker = tile.screenBounds.ToRectangle();
+                            tileHoveredByMouse = tile;
+
+                            // Break both loops if we found a Tile that the mouse currently hovers.
+                            breakOuterLoop = true;
+                            break;
+                        }
+                    }
+
+                    if (breakOuterLoop)
+                    {
+                        break;
+                    }
+                }
+            }
+        }
+
+        private void UpdateMovingTileSelection(Vector2 currentMousePosition)
+        {
+            if (!movementLocked && 
+                IsHoveredByMouse &&
+                InputManager.IsLeftMouseButtonDown())
+            {
+                Position += currentMousePosition - InputManager.PreviousMousePosition();
+            }
+        }
+
         private void UpdateBounds()
         {
             int widthFirstRow = (int)(tiles[0].Count * tileSize.X + (tiles[0].Count - 1) * tileSpacing.X);
@@ -298,5 +309,7 @@ namespace TilemapEditor
                 currentTileMarker = currentTile.screenBounds.ToRectangle();
             }
         }
+
+        #endregion
     }
 }
