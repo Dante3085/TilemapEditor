@@ -398,7 +398,7 @@ namespace TilemapEditor
             return previousMouseState.Position.ToVector2();
         }
 
-        public static bool OnLeftMouseButtonDown()
+        public static bool OnLeftMouseButtonClicked()
         {
             return previousMouseState.LeftButton == ButtonState.Released &&
                    currentMouseState.LeftButton == ButtonState.Pressed;
@@ -410,7 +410,7 @@ namespace TilemapEditor
                    currentMouseState.LeftButton == ButtonState.Released;
         }
 
-        public static bool OnRightMouseButtonDown()
+        public static bool OnRightMouseButtonClicked()
         {
             return previousMouseState.RightButton == ButtonState.Released &&
                    currentMouseState.RightButton == ButtonState.Pressed;
