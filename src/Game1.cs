@@ -2,6 +2,8 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
+using MonoGame.Extended;
+
 namespace TilemapEditor
 {
     /// <summary>
@@ -14,6 +16,8 @@ namespace TilemapEditor
 
         private TilemapEditor tilemapEditor;
         private FpsCounter fpsCounter;
+
+        private SpriteFont font;
 
         public static bool MouseVisible
         {
@@ -60,11 +64,17 @@ namespace TilemapEditor
         /// </summary>
         protected override void LoadContent()
         {
+            RasterizerState rasterizerState = new RasterizerState();
+            rasterizerState.ScissorTestEnable = true;
+            GraphicsDevice.RasterizerState = rasterizerState;
+
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             tilemapEditor.LoadContent(Content, GraphicsDevice.Viewport);
             fpsCounter.LoadContent(Content);
+
+            font = Content.Load<SpriteFont>("fonts/font_default");
         }
 
         /// <summary>
@@ -103,13 +113,38 @@ namespace TilemapEditor
         {
             GraphicsDevice.Clear(Color.Black);
 
-            tilemapEditor.Draw(gameTime, spriteBatch);
+            //tilemapEditor.Draw(gameTime, spriteBatch);
+
+            //spriteBatch.Begin();
+            //fpsCounter.Draw(gameTime, spriteBatch);
+            //spriteBatch.End();
+
+            // Seperate rendering area stuff - FUNKTIONERT Yes Boi - Text wird abgeschnitten ist der Beweis
+            Rectangle rectangle = new Rectangle(100, 100, 400, 400);
 
             spriteBatch.Begin();
+            spriteBatch.DrawRectangle(rectangle, Color.Red);
+            spriteBatch.End();
 
-            fpsCounter.Draw(gameTime, spriteBatch);
+            RasterizerState rasterizerState = new RasterizerState();
+            rasterizerState.ScissorTestEnable = true;
+            spriteBatch.GraphicsDevice.RasterizerState = rasterizerState;
+
+            float scrollWheel = InputManager.CurrentScrollWheel();
+            spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, null, null, rasterizerState, transformMatrix: Matrix.CreateTranslation(0, scrollWheel/8, 0));
+            spriteBatch.GraphicsDevice.ScissorRectangle = rectangle;
+
+            for (int i = 0; i < 1; i++)
+            {
+                Vector2 newsItems = new Vector2(200 + i * 80, 300);
+                spriteBatch.DrawString(font, "scrollWheel: "  + scrollWheel, newsItems, Color.White);
+            }
 
             spriteBatch.End();
+
+            RasterizerState rasterizerState2 = new RasterizerState();
+            rasterizerState2.ScissorTestEnable = false;
+            spriteBatch.GraphicsDevice.RasterizerState = rasterizerState2;
 
             base.Draw(gameTime);
         }
